@@ -1,12 +1,12 @@
 // Paste your Firebase web app config here (Firebase console → Project settings → Your apps → Web).
 // It is safe to commit: the apiKey only identifies the project; Firestore rules protect the data.
 export const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
+  apiKey: "AIzaSyDKDsbDwMPvQTxP1q896Wr5qOsdQelaxHc",
+  authDomain: "trevorplanequiz.firebaseapp.com",
+  projectId: "trevorplanequiz",
+  storageBucket: "trevorplanequiz.firebasestorage.app",
+  messagingSenderId: "831520965062",
+  appId: "1:831520965062:web:63691188f4d8bc5b44b2c7",
 };
 
 // Game tuning. All timings in milliseconds.
