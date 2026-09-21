@@ -5,6 +5,7 @@ import { state, coins, markDirty, save, refreshHud } from './store.js';
 import { PLANES } from './planes.js';
 import { pickDrop, isPlaneComplete } from './cards.js';
 import { evaluateBadges } from './badges.js';
+import * as audio from './audio.js';
 import { THREE, createRenderer, fitRenderer, disposeRenderer, addLights, loadPlane, animate, easeOutCubic, easeInOutCubic, easeOutBack } from './three-common.js';
 
 const W = 3.2, D = 2.2, H = 2.6;              // cabinet inner size
@@ -187,23 +188,29 @@ async function drop() {
   const start = claw.position.clone();
 
   setMsg('Going for it…');
+  audio.play('motor');
   await animate(600, (t) => { claw.position.x = start.x + (target.x - start.x) * t; claw.position.z = start.z + (target.z - start.z) * t; });
+  audio.play('motor');
   await animate(900, (t) => { claw.position.y = topY + (grabY - topY) * t; }, easeInOutCubic);
+  audio.play('grab');
   await animate(350, (t) => setProngs(claw, 1 - t * 0.85), easeOutCubic);
   if (!g?.alive) return;
   const toyStart = toy?.position.clone();
   const lift = win ? topY : topY - (topY - grabY) * 0.45;
+  audio.play('motor');
   await animate(900, (t) => { claw.position.y = grabY + (lift - grabY) * t; if (toy) toy.position.y = toyStart.y + (lift - grabY) * t; }, easeInOutCubic);
   if (!g?.alive) return;
 
   if (win) {
     setMsg('Got it! 🎉');
+    audio.play('fanfare');
     const from = claw.position.clone(), toyFrom = toy?.position.clone();
     await animate(1000, (t) => {
       claw.position.x = from.x + (g.chute.x - from.x) * t; claw.position.z = from.z + (g.chute.z - from.z) * t;
       if (toy) { toy.position.x = toyFrom.x + (g.chute.x - toyFrom.x) * t; toy.position.z = toyFrom.z + (g.chute.z - toyFrom.z) * t; }
     });
     await animate(300, (t) => setProngs(claw, 0.15 + t * 0.85), easeOutCubic);
+    audio.play('drop');
     if (toy) { const y0 = toy.position.y; await animate(500, (t) => { toy.position.y = y0 - (y0 + 0.6) * t; toy.scale.multiplyScalar(0.985); }, easeInOutCubic); }
     p.ownedCards.push(card.id);
     p.clawWins = (p.clawWins || 0) + 1; p.clawStreak = (p.clawStreak || 0) + 1;
@@ -214,6 +221,7 @@ async function drop() {
     showScreen('reward', { cardId: card.id, completes });
   } else {
     setMsg('Oh no, it slipped! 😅');
+    audio.play('lose');
     await animate(180, (t) => setProngs(claw, 0.15 + t * 0.85));
     if (toy) { const y0 = toy.position.y; await animate(450, (t) => { toy.position.y = Math.max(toyStart.y, y0 - (y0 - toyStart.y) * t); }, easeOutBack); toy.position.y = toyStart.y; }
     await animate(700, (t) => { claw.position.y = lift + (topY - lift) * t; }, easeInOutCubic);

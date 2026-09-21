@@ -1,5 +1,5 @@
 import { state, markDirty, save } from './store.js';
-import { toast, confettiBurst } from './ui.js';
+import { showBadgeModal } from './ui.js';
 
 export const BADGES = [
   { id: 'takeoff', name: 'Takeoff', icon: '🛫', desc: 'Get your first answer right', test: (c) => c.correctTotal >= 1 },
@@ -34,16 +34,17 @@ function buildCtx(run) {
   };
 }
 
-// Checks every badge against the current state; unlocks, toasts and saves any new ones.
-export function evaluateBadges(run = {}) {
+// Checks every badge against the current state; unlocks and saves new ones and shows the
+// unlock pop-up for each. Resolves once the player has dismissed them all.
+export async function evaluateBadges(run = {}) {
   const p = state.profile;
   if (!p) return [];
   const ctx = buildCtx(run);
   const unlocked = BADGES.filter((b) => !p.badges.includes(b.id) && b.test(ctx));
   if (unlocked.length) {
-    for (const b of unlocked) { p.badges.push(b.id); toast(`${b.icon} Badge unlocked: ${b.name}!`, { cls: 'badge-toast', ms: 3400 }); }
-    confettiBurst('big');
+    for (const b of unlocked) p.badges.push(b.id);
     markDirty(); save(true);
+    for (const b of unlocked) await showBadgeModal(b);
   }
   return unlocked;
 }

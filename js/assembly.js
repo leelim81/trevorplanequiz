@@ -1,6 +1,7 @@
 // The four card pieces fly together into the whole plane.
 import { registerScreen, showScreen, $, confettiBurst } from './ui.js';
 import { PLANES } from './planes.js';
+import * as audio from './audio.js';
 import { THREE, createRenderer, fitRenderer, disposeRenderer, addLights, loadPlane, boxOf, forEachMaterial, partClipPlanes, animate, easeOutBack, easeInOutCubic } from './three-common.js';
 
 let a = null;
@@ -49,12 +50,13 @@ registerScreen('assembly', {
     })();
 
     await animate(900, () => {});
+    audio.play('whoosh');
     await animate(2200, (t, raw) => { for (const o of pieces) o.position.copy(o.userData.start).multiplyScalar(1 - t); if (a) a.radius = 2.7 - 1.1 * raw; }, easeOutBack);
     if (!a?.alive) return;
     for (const o of pieces) { o.position.set(0, 0, 0); forEachMaterial(o, (mat) => { mat.clippingPlanes = null; }); }
     pieces.slice(1).forEach((o) => scene.remove(o));
     $('#assembly-title').textContent = `${plane.emoji} ${plane.name} complete!`;
-    confettiBurst('big');
+    confettiBurst('big'); audio.play('bigwin');
     btnDone.hidden = false;
     await animate(6000, (t, raw) => { a && (a.angle = 0.6 + raw * Math.PI * 2 * 1.5); }, (t) => t);
     (function spin() { if (!a?.alive) return; a.angle += 0.01; requestAnimationFrame(spin); })();

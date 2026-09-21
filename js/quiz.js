@@ -1,13 +1,14 @@
 import { GAME } from './config.js';
-import { registerScreen, showScreen, $, $$, toast, confettiBurst, shuffle, weightedPick, sleep, updateHud } from './ui.js';
+import { registerScreen, showScreen, $, $$, toast, confettiBurst, shuffle, weightedPick, sleep, updateHud, floatText, flyCoin, bump, countUp } from './ui.js';
 import { questionsFor, categoryLabel } from './data.js';
 import { state, markDirty, save, refreshHud, coins } from './store.js';
 import { createTimer } from './timer.js';
 import { evaluateBadges } from './badges.js';
+import * as audio from './audio.js';
 
 let run = null, current = null, locked = false, timer = null;
 let lastCategory = 'mixed';
-const img = $('#quiz-image'), feedback = $('#quiz-feedback'), choiceBtns = $$('.btn-choice');
+const img = $('#quiz-image'), imgWrap = $('#quiz-image-wrap'), feedback = $('#quiz-feedback'), choiceBtns = $$('.btn-choice'), choicesBox = $('#choices');
 
 export const getLastCategory = () => lastCategory;
 
@@ -25,7 +26,7 @@ function weight(q) {
 }
 
 async function startRun(category) {
-  timer ??= createTimer({ fill: $('#timer-fill'), bonus: $('#timer-bonus') });
+  timer ??= createTimer({ fill: $('#timer-fill'), bonus: $('#timer-bonus'), track: $('#timer') });
   lastCategory = category;
   run = { category, score: 0, lives: GAME.LIVES, count: 0, streak: 0, fastStreak: 0, lastQid: null, over: false, pointsEarned: 0, coinsBefore: coins() };
   $('#quiz-cat').textContent = categoryLabel(category);
@@ -51,8 +52,9 @@ async function nextQuestion() {
   img.src = q.img;
   try { await Promise.race([img.decode(), sleep(1500)]); } catch { /* broken image: still ask */ }
   if (run.over) return;
+  bump(imgWrap, 'deal'); bump(choicesBox, 'deal'); audio.play('pop');
   locked = false;
-  timer.start(onTimeout);
+  timer.start(onTimeout, () => audio.play('tick'));
 }
 
 function showFeedback(kind, symbol) {
@@ -89,18 +91,24 @@ async function resolve(chosen, elapsed) {
     run.score += pts; run.pointsEarned += pts; run.streak++; run.fastStreak = fast ? run.fastStreak + 1 : 0;
     p.totalPoints += pts; p.correctTotal++;
     showFeedback('ok', fast ? '⚡' : '✅');
+    audio.play(fast ? 'bonus' : 'correct');
+    floatText(fast ? '+2 ⚡' : '+1', { anchor: imgWrap, cls: fast ? 'bonus' : '' });
     if (fast) confettiBurst('bonus');
-    if (coins() > coinsBefore) toast('🪙 +1 coin!');
+    bump($('#quiz-score'));
+    if (coins() > coinsBefore) { flyCoin(imgWrap); toast('🪙 +1 coin!'); }
   } else {
     if (chosen >= 0) choiceBtns[chosen].classList.add('wrong');
     run.lives--; run.streak = 0; run.fastStreak = 0; p.wrongTotal++;
     showFeedback('bad', chosen < 0 ? '⏰' : '❌');
+    audio.play(chosen < 0 ? 'timeout' : 'wrong');
+    floatText(chosen < 0 ? 'Too slow!' : 'Oops!', { anchor: imgWrap, cls: 'bad' });
+    setTimeout(() => { audio.play('life'); bump($('#hud-lives'), 'hit'); }, 250);
   }
   run.count++;
   markDirty();
   if (run.count % GAME.FLUSH_EVERY === 0) save();
   updateScore(); refreshHud();
-  evaluateBadges({ fastStreak: run.fastStreak, runStreak: run.streak, runScore: run.score });
+  await evaluateBadges({ fastStreak: run.fastStreak, runStreak: run.streak, runScore: run.score });
 
   await sleep(correct ? 700 : 1200);
   if (run.over) return;
@@ -117,12 +125,15 @@ function endRun({ quiet = false } = {}) {
   const newBest = run.score > (p.bestRun || 0);
   if (newBest) p.bestRun = run.score;
   markDirty(); save(true);
-  evaluateBadges({ runScore: run.score, runStreak: run.streak, fastStreak: run.fastStreak });
+  const badges = evaluateBadges({ runScore: run.score, runStreak: run.streak, fastStreak: run.fastStreak });
   refreshHud();
   if (quiet) return;
-  $('#go-score').textContent = run.score;
+  const stars = run.score >= 30 ? 3 : run.score >= 15 ? 2 : run.score >= 5 ? 1 : 0;
+  $('#go-stars').replaceChildren(...[0, 1, 2].map((i) => Object.assign(document.createElement('span'), { textContent: '⭐', className: i < stars ? '' : 'off' })));
   $('#go-best').textContent = newBest ? '🎉 New best score!' : `Best score: ${p.bestRun}`;
   const coinsEarned = coins() - run.coinsBefore;
   $('#go-earned').textContent = `+${run.pointsEarned} points · +${coinsEarned} coins`;
-  showScreen('gameover');
+  badges.then(() => {
+    showScreen('gameover').then(() => { audio.play(newBest ? 'fanfare' : 'gameover'); countUp($('#go-score'), run.score, 1000); if (newBest) confettiBurst('big'); });
+  });
 }

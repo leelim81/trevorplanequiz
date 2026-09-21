@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<meta name="theme-color" content="#38bdf8">
+<meta name="theme-color" content="#4cc3ff">
 <title>Trevor Plane Quiz</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Baloo+2:wght@700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <script type="importmap">
 {
@@ -20,12 +20,19 @@
 </head>
 <body>
 
+<div id="bg" aria-hidden="true">
+  <div class="sun"></div>
+  <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div><div class="cloud c4"></div>
+  <div class="fly-plane">✈️</div>
+</div>
+
 <header id="hud" hidden>
   <button id="hud-home" class="hud-btn" aria-label="Home">🏠</button>
   <span id="hud-name" class="hud-name"></span>
-  <span class="hud-stat" title="Points">⭐ <b id="hud-points">0</b></span>
-  <span class="hud-stat" title="Coins">🪙 <b id="hud-coins">0</b></span>
+  <span class="hud-stat" id="hud-points-wrap" title="Points">⭐ <b id="hud-points">0</b></span>
+  <span class="hud-stat" id="hud-coins-wrap" title="Coins">🪙 <b id="hud-coins">0</b></span>
   <span class="hud-stat" id="hud-lives-wrap" hidden><b id="hud-lives">❤️❤️❤️</b></span>
+  <button id="hud-sound" class="hud-btn" aria-label="Sound on/off">🔊</button>
 </header>
 
 <main id="app">
@@ -33,14 +40,14 @@
   <section class="screen active" id="screen-loading">
     <div class="center">
       <div class="plane-spin">✈️</div>
-      <p id="loading-msg">Loading…</p>
+      <p id="loading-msg" class="sub">Loading…</p>
     </div>
   </section>
 
   <section class="screen" id="screen-signin">
     <div class="center">
       <div class="logo">✈️</div>
-      <h1>Trevor Plane Quiz</h1>
+      <h1 class="title-big">Trevor Plane Quiz</h1>
       <p class="sub">Planes · Cars · Flags</p>
       <button id="btn-google" class="btn btn-primary btn-xl">
         <span class="g-logo">G</span> Sign in with Google
@@ -51,6 +58,7 @@
 
   <section class="screen" id="screen-username">
     <div class="center">
+      <div class="logo small">🧑‍✈️</div>
       <h2>Pick your pilot name</h2>
       <p class="sub">This is the name other players will see</p>
       <input id="username-input" class="input-xl" maxlength="16" autocomplete="off" placeholder="e.g. TrevorAce">
@@ -61,12 +69,12 @@
 
   <section class="screen" id="screen-menu">
     <div class="menu">
-      <h1 class="menu-title">✈️ Plane Quiz</h1>
-      <button class="btn btn-menu btn-play" data-go="category">🎮 PLAY</button>
-      <button class="btn btn-menu btn-claw" data-go="claw">🕹️ CLAW MACHINE <span id="menu-coins" class="pill">🪙 0</span></button>
-      <button class="btn btn-menu btn-collection" data-go="collection">🃏 MY COLLECTION</button>
-      <button class="btn btn-menu btn-leader" data-go="leaderboard">🏆 LEADERBOARD</button>
-      <button class="btn btn-menu btn-badges" data-go="profile">🎖️ MY BADGES</button>
+      <h1 class="menu-title"><span class="bounce">✈️</span> Plane Quiz</h1>
+      <button class="btn btn-menu btn-play" data-go="category"><span class="ico">🎮</span> PLAY</button>
+      <button class="btn btn-menu btn-claw" data-go="claw"><span class="ico">🕹️</span> CLAW MACHINE <span id="menu-coins" class="pill">🪙 0</span></button>
+      <button class="btn btn-menu btn-collection" data-go="collection"><span class="ico">🃏</span> MY COLLECTION</button>
+      <button class="btn btn-menu btn-leader" data-go="leaderboard"><span class="ico">🏆</span> LEADERBOARD</button>
+      <button class="btn btn-menu btn-badges" data-go="profile"><span class="ico">🎖️</span> MY BADGES</button>
       <div class="menu-foot">
         <button class="link" data-go="credits">Credits</button>
         <button class="link" id="btn-signout">Sign out</button>
@@ -76,11 +84,11 @@
 
   <section class="screen" id="screen-category">
     <div class="menu">
-      <h2>Choose a category</h2>
-      <button class="btn btn-menu btn-cat" data-cat="airlines">✈️ AIRLINES</button>
-      <button class="btn btn-menu btn-cat" data-cat="cars">🚗 CARS</button>
-      <button class="btn btn-menu btn-cat" data-cat="flags">🚩 FLAGS</button>
-      <button class="btn btn-menu btn-cat btn-mixed" data-cat="mixed">🎲 MIXED</button>
+      <h2 class="menu-sub">Choose a category</h2>
+      <button class="btn btn-menu btn-cat btn-air" data-cat="airlines"><span class="ico">✈️</span> AIRLINES</button>
+      <button class="btn btn-menu btn-cat btn-car" data-cat="cars"><span class="ico">🚗</span> CARS</button>
+      <button class="btn btn-menu btn-cat btn-flag" data-cat="flags"><span class="ico">🚩</span> FLAGS</button>
+      <button class="btn btn-menu btn-cat btn-mixed" data-cat="mixed"><span class="ico">🎲</span> MIXED</button>
       <button class="btn btn-back" data-go="menu">← Back</button>
     </div>
   </section>
@@ -92,7 +100,7 @@
         <span id="quiz-cat" class="quiz-cat"></span>
       </div>
       <div class="timer" id="timer">
-        <div class="timer-bonus" id="timer-bonus"></div>
+        <div class="timer-bonus" id="timer-bonus"><span>⚡ BONUS</span></div>
         <div class="timer-fill" id="timer-fill"></div>
       </div>
       <div class="quiz-image-wrap" id="quiz-image-wrap">
@@ -100,10 +108,10 @@
         <div class="quiz-feedback" id="quiz-feedback"></div>
       </div>
       <div class="choices" id="choices">
-        <button class="btn btn-choice" data-i="0"></button>
-        <button class="btn btn-choice" data-i="1"></button>
-        <button class="btn btn-choice" data-i="2"></button>
-        <button class="btn btn-choice" data-i="3"></button>
+        <button class="btn btn-choice" data-i="0" style="--i:0"></button>
+        <button class="btn btn-choice" data-i="1" style="--i:1"></button>
+        <button class="btn btn-choice" data-i="2" style="--i:2"></button>
+        <button class="btn btn-choice" data-i="3" style="--i:3"></button>
       </div>
       <button class="btn btn-back btn-quit" id="btn-quit">Quit</button>
     </div>
@@ -111,8 +119,10 @@
 
   <section class="screen" id="screen-gameover">
     <div class="center">
+      <div class="logo small">🏁</div>
       <h1>Game over!</h1>
       <div class="score-big" id="go-score">0</div>
+      <div class="stars" id="go-stars"></div>
       <p id="go-best" class="sub"></p>
       <p id="go-earned" class="sub"></p>
       <button class="btn btn-primary btn-xl" id="btn-again">Play again</button>
@@ -137,10 +147,22 @@
   <section class="screen" id="screen-reward">
     <div class="center reward">
       <h2 id="reward-title">You got a prize! 🎁</h2>
+      <div id="reward-gift" class="gift">🎁</div>
       <button class="btn btn-primary btn-xl" id="btn-watch">▶ Watch to unwrap it</button>
-      <div class="video-wrap" id="video-wrap" hidden>
-        <video id="reward-video" playsinline preload="auto"></video>
-        <div class="video-progress"><div id="video-progress-fill"></div></div>
+      <div class="ad-frame" id="video-wrap" hidden>
+        <div class="ad-top">
+          <span class="ad-badge">Ad</span>
+          <span class="ad-kind">Rewarded video</span>
+          <span class="ad-timer" id="ad-timer">Reward in 30s</span>
+          <button class="ad-close" id="ad-close" disabled aria-label="Close">✕</button>
+        </div>
+        <div class="ad-video"><video id="reward-video" playsinline preload="auto"></video></div>
+        <div class="ad-progress"><div id="video-progress-fill"></div></div>
+        <div class="ad-bottom">
+          <div class="ad-icon">✈️</div>
+          <div class="ad-app"><b>Trevor Plane Quiz</b><span>★★★★★ · Plane cards await!</span></div>
+          <button class="ad-cta" id="ad-cta" disabled>Watching…</button>
+        </div>
       </div>
       <div id="card-reveal" class="card-reveal" hidden></div>
       <button class="btn btn-primary btn-xl" id="btn-reward-done" hidden>Awesome!</button>
@@ -157,7 +179,7 @@
 
   <section class="screen" id="screen-collection">
     <div class="page">
-      <div class="page-head"><button class="btn btn-back" data-go="menu">← Back</button><h2>My collection</h2></div>
+      <div class="page-head"><button class="btn btn-back" data-go="menu">← Back</button><h2>🃏 My collection</h2></div>
       <div id="collection-grid" class="collection-grid"></div>
     </div>
   </section>
@@ -197,6 +219,18 @@
 
 </main>
 
+<div id="badge-modal" class="modal" hidden>
+  <div class="modal-card">
+    <div class="modal-rays"></div>
+    <div class="badge-big" id="badge-modal-icon">🏅</div>
+    <div class="modal-kicker">Badge unlocked!</div>
+    <h2 id="badge-modal-name"></h2>
+    <p id="badge-modal-desc" class="sub"></p>
+    <button class="btn btn-primary" id="badge-modal-ok">Sweet! 🎉</button>
+  </div>
+</div>
+
+<div id="fx-layer" aria-hidden="true"></div>
 <div id="toasts"></div>
 <script type="module" src="js/main.js"></script>
 </body>

@@ -4,6 +4,7 @@ import { loadQuestionBank } from './data.js';
 import * as store from './store.js';
 import { watchAuth, signInWithGoogle, signOutUser } from './auth.js';
 import { getLastCategory } from './quiz.js';
+import * as audio from './audio.js';
 import './claw.js';
 import './reward.js';
 import './assembly.js';
@@ -12,9 +13,14 @@ import './leaderboard.js';
 import './profile.js';
 import './credits.js';
 
-registerScreen('menu', { enter: () => store.refreshHud() });
+registerScreen('menu', { enter: () => { store.refreshHud(); audio.startMusic(); } });
 
 function wire() {
+  const soundBtn = $('#hud-sound');
+  const paintSound = () => { soundBtn.textContent = audio.isMuted() ? '🔇' : '🔊'; };
+  paintSound();
+  soundBtn.addEventListener('click', () => { audio.setMuted(!audio.isMuted()); paintSound(); if (!audio.isMuted()) { audio.startMusic(); audio.play('pop'); } });
+  document.addEventListener('pointerdown', (e) => { if (e.target.closest('.btn:not(:disabled), .lb-row, .hud-btn, .ad-cta.ready, .ad-close.ready, .link')) audio.play('click'); }, { capture: true });
   $$('[data-go]').forEach((b) => b.addEventListener('click', () => showScreen(b.dataset.go)));
   $('#hud-home').addEventListener('click', () => showScreen('menu'));
   $$('.btn-cat').forEach((b) => b.addEventListener('click', () => showScreen('quiz', { category: b.dataset.cat })));
