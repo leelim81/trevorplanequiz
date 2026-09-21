@@ -18,5 +18,5 @@ export const GAME = {
   CLAW_WIN_CHANCE: 0.5,
   FLUSH_EVERY: 5,        // save progress to Firestore every N questions
   LEADERBOARD_SIZE: 20,
-  VIDEOS: ['assets/videos/reward1.mp4', 'assets/videos/reward2.mp4', 'assets/videos/reward3.mp4'],
+  VIDEOS: ['assets/videos/reward1.mp4', 'assets/videos/reward2.mp4', 'assets/videos/reward3.mp4', 'assets/videos/reward4.mp4'],
 };

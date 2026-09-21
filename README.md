@@ -30,14 +30,16 @@ You do **not** need Firebase Storage or the Blaze plan. The free Spark plan cove
 
 ## Adding the reward videos
 
-Put three MP4 clips in `assets/videos/` named `reward1.mp4`, `reward2.mp4`, `reward3.mp4`. Big files are fine
+The reward clips live in `assets/videos/` as `reward1.mp4` … `reward4.mp4` (add more by listing them in `GAME.VIDEOS` in `js/config.js`). Big files are fine
 locally; before committing, shrink each one (about 30 s → ~3 MB):
 
 ```bash
 ffmpeg -i input.mp4 -vf "scale=-2:720" -c:v libx264 -crf 28 -preset slow -c:a aac -b:a 96k -movflags +faststart assets/videos/reward1.mp4
 ```
 
-Until the files exist, the game shows the card after a short pause instead of a video.
+If a clip fails to load, the game shows the card after a short pause instead.
+
+To test without signing in, open the site with `?guest=1` added to the URL.
 
 ## Tuning
 

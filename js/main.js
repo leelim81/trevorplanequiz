@@ -54,8 +54,9 @@ async function boot() {
   $('#loading-msg').textContent = 'Loading questions…';
   await loadQuestionBank();
 
-  if (!fb.enabled) {
-    document.body.prepend(el('div', { class: 'guest-banner', text: 'Guest mode — Firebase is not configured yet, progress is saved on this device only' }));
+  const forceGuest = new URLSearchParams(location.search).has('guest'); // ?guest=1 for testing without sign-in
+  if (!fb.enabled || forceGuest) {
+    document.body.prepend(el('div', { class: 'guest-banner', text: forceGuest ? 'Guest mode (test) — progress is saved on this device only' : 'Guest mode — Firebase is not configured yet, progress is saved on this device only' }));
     store.startGuest();
     showScreen(store.state.profile ? 'menu' : 'username');
     return;
