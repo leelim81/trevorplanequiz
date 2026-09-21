@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><base href="../"><title>Model check</title>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"}}</script>
+<style>body{font-family:system-ui;margin:0;background:#0f172a;color:#e2e8f0}#top{padding:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}#c{width:100vw;height:60vh;display:block}#cards{display:flex;gap:8px;padding:8px}#cards img{width:150px;height:150px;background:#fff;border-radius:8px}button{font-size:16px;padding:6px 12px}</style>
+</head><body>
+<div id="top"><button id="prev">◀</button><b id="name"></b><button id="next">▶</button><span id="info"></span></div>
+<canvas id="c"></canvas>
+<div id="cards"></div>
+<script type="module">
+import { THREE, addLights, loadPlane, boxOf } from './js/three-common.js';
+import { PLANES } from './js/planes.js';
+import { renderCardImage } from './js/cardRender.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+const canvas = document.getElementById('c');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+const scene = addLights(new THREE.Scene()); scene.background = new THREE.Color(0x334155);
+scene.add(new THREE.AxesHelper(0.8)); // X red = nose should point here, Y green = up
+scene.add(new THREE.GridHelper(2, 10, 0x64748b, 0x475569));
+const camera = new THREE.PerspectiveCamera(40, 1, 0.01, 100); camera.position.set(1.2, 0.7, 1.4);
+const controls = new OrbitControls(camera, canvas); controls.enableDamping = true;
+function fit() { renderer.setSize(innerWidth, innerHeight * 0.6, false); camera.aspect = innerWidth / (innerHeight * 0.6); camera.updateProjectionMatrix(); }
+addEventListener('resize', fit); fit();
+let i = +(location.hash.slice(1) || 0), current = null;
+async function show() {
+  const plane = PLANES[i]; location.hash = i;
+  document.getElementById('name').textContent = `${i + 1}/10 ${plane.name} (${plane.file}) rot=${plane.rot}`;
+  if (current) scene.remove(current);
+  current = await loadPlane(plane); scene.add(current);
+  const b = boxOf(current), s = b.getSize(new THREE.Vector3());
+  let meshes = 0, tris = 0, textured = 0;
+  current.traverse((m) => { if (m.isMesh) { meshes++; tris += (m.geometry.index ? m.geometry.index.count : m.geometry.attributes.position.count) / 3; if ([].concat(m.material).some((x) => x.map)) textured++; } });
+  document.getElementById('info').textContent = ` size x=${s.x.toFixed(2)} y=${s.y.toFixed(2)} z=${s.z.toFixed(2)} | meshes=${meshes} tris=${Math.round(tris)} textured=${textured}`;
+  const cards = document.getElementById('cards'); cards.replaceChildren();
+  for (let part = 1; part <= 4; part++) { const img = new Image(); img.title = `part ${part}`; cards.append(img); renderCardImage(i, part).then((u) => (img.src = u)); }
+}
+document.getElementById('prev').onclick = () => { i = (i + 9) % 10; show(); };
+document.getElementById('next').onclick = () => { i = (i + 1) % 10; show(); };
+show();
+(function loop() { controls.update(); renderer.render(scene, camera); requestAnimationFrame(loop); })();
+</script></body></html>

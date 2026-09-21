@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#38bdf8">
+<title>Trevor Plane Quiz</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+
+<header id="hud" hidden>
+  <button id="hud-home" class="hud-btn" aria-label="Home">🏠</button>
+  <span id="hud-name" class="hud-name"></span>
+  <span class="hud-stat" title="Points">⭐ <b id="hud-points">0</b></span>
+  <span class="hud-stat" title="Coins">🪙 <b id="hud-coins">0</b></span>
+  <span class="hud-stat" id="hud-lives-wrap" hidden><b id="hud-lives">❤️❤️❤️</b></span>
+</header>
+
+<main id="app">
+
+  <section class="screen active" id="screen-loading">
+    <div class="center">
+      <div class="plane-spin">✈️</div>
+      <p id="loading-msg">Loading…</p>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-signin">
+    <div class="center">
+      <div class="logo">✈️</div>
+      <h1>Trevor Plane Quiz</h1>
+      <p class="sub">Planes · Cars · Flags</p>
+      <button id="btn-google" class="btn btn-primary btn-xl">
+        <span class="g-logo">G</span> Sign in with Google
+      </button>
+      <p id="signin-msg" class="msg"></p>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-username">
+    <div class="center">
+      <h2>Pick your pilot name</h2>
+      <p class="sub">This is the name other players will see</p>
+      <input id="username-input" class="input-xl" maxlength="16" autocomplete="off" placeholder="e.g. TrevorAce">
+      <button id="btn-username" class="btn btn-primary btn-xl">Let's fly! ✈️</button>
+      <p id="username-msg" class="msg"></p>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-menu">
+    <div class="menu">
+      <h1 class="menu-title">✈️ Plane Quiz</h1>
+      <button class="btn btn-menu btn-play" data-go="category">🎮 PLAY</button>
+      <button class="btn btn-menu btn-claw" data-go="claw">🕹️ CLAW MACHINE <span id="menu-coins" class="pill">🪙 0</span></button>
+      <button class="btn btn-menu btn-collection" data-go="collection">🃏 MY COLLECTION</button>
+      <button class="btn btn-menu btn-leader" data-go="leaderboard">🏆 LEADERBOARD</button>
+      <button class="btn btn-menu btn-badges" data-go="profile">🎖️ MY BADGES</button>
+      <div class="menu-foot">
+        <button class="link" data-go="credits">Credits</button>
+        <button class="link" id="btn-signout">Sign out</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-category">
+    <div class="menu">
+      <h2>Choose a category</h2>
+      <button class="btn btn-menu btn-cat" data-cat="airlines">✈️ AIRLINES</button>
+      <button class="btn btn-menu btn-cat" data-cat="cars">🚗 CARS</button>
+      <button class="btn btn-menu btn-cat" data-cat="flags">🚩 FLAGS</button>
+      <button class="btn btn-menu btn-cat btn-mixed" data-cat="mixed">🎲 MIXED</button>
+      <button class="btn btn-back" data-go="menu">← Back</button>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-quiz">
+    <div class="quiz">
+      <div class="quiz-top">
+        <span id="quiz-score" class="quiz-score">Score 0</span>
+        <span id="quiz-cat" class="quiz-cat"></span>
+      </div>
+      <div class="timer" id="timer">
+        <div class="timer-bonus" id="timer-bonus"></div>
+        <div class="timer-fill" id="timer-fill"></div>
+      </div>
+      <div class="quiz-image-wrap" id="quiz-image-wrap">
+        <img id="quiz-image" alt="Guess what this is">
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+      </div>
+      <div class="choices" id="choices">
+        <button class="btn btn-choice" data-i="0"></button>
+        <button class="btn btn-choice" data-i="1"></button>
+        <button class="btn btn-choice" data-i="2"></button>
+        <button class="btn btn-choice" data-i="3"></button>
+      </div>
+      <button class="btn btn-back btn-quit" id="btn-quit">Quit</button>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-gameover">
+    <div class="center">
+      <h1>Game over!</h1>
+      <div class="score-big" id="go-score">0</div>
+      <p id="go-best" class="sub"></p>
+      <p id="go-earned" class="sub"></p>
+      <button class="btn btn-primary btn-xl" id="btn-again">Play again</button>
+      <button class="btn btn-back" data-go="menu">Menu</button>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-claw">
+    <div class="claw">
+      <div class="claw-top">
+        <span id="claw-coins" class="pill">🪙 0</span>
+        <span id="claw-msg" class="claw-msg">Press DROP when the claw is over a plane!</span>
+      </div>
+      <div id="claw-canvas-wrap" class="canvas-wrap"></div>
+      <div class="claw-controls">
+        <button class="btn btn-back" data-go="menu">← Back</button>
+        <button class="btn btn-primary btn-xl btn-drop" id="btn-drop">DROP 🕹️</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-reward">
+    <div class="center reward">
+      <h2 id="reward-title">You got a prize! 🎁</h2>
+      <button class="btn btn-primary btn-xl" id="btn-watch">▶ Watch to unwrap it</button>
+      <div class="video-wrap" id="video-wrap" hidden>
+        <video id="reward-video" playsinline preload="auto"></video>
+        <div class="video-progress"><div id="video-progress-fill"></div></div>
+      </div>
+      <div id="card-reveal" class="card-reveal" hidden></div>
+      <button class="btn btn-primary btn-xl" id="btn-reward-done" hidden>Awesome!</button>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-assembly">
+    <div class="assembly">
+      <h2 id="assembly-title">Building your plane…</h2>
+      <div id="assembly-canvas-wrap" class="canvas-wrap"></div>
+      <button class="btn btn-primary btn-xl" id="btn-assembly-done" hidden>Woohoo! 🎉</button>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-collection">
+    <div class="page">
+      <div class="page-head"><button class="btn btn-back" data-go="menu">← Back</button><h2>My collection</h2></div>
+      <div id="collection-grid" class="collection-grid"></div>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-viewer">
+    <div class="viewer">
+      <div class="page-head"><button class="btn btn-back" id="btn-viewer-back">← Back</button><h2 id="viewer-title"></h2></div>
+      <div id="viewer-canvas-wrap" class="canvas-wrap"></div>
+      <p class="sub">Drag to spin · pinch to zoom</p>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-leaderboard">
+    <div class="page">
+      <div class="page-head"><button class="btn btn-back" data-go="menu">← Back</button><h2>🏆 Leaderboard</h2></div>
+      <ol id="leaderboard-list" class="leaderboard"></ol>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-profile">
+    <div class="page">
+      <div class="page-head"><button class="btn btn-back" id="btn-profile-back">← Back</button><h2 id="profile-title"></h2></div>
+      <div id="profile-stats" class="profile-stats"></div>
+      <h3>Badges</h3>
+      <div id="profile-badges" class="badge-grid"></div>
+      <h3>Collection</h3>
+      <div id="profile-collection" class="collection-grid"></div>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-credits">
+    <div class="page">
+      <div class="page-head"><button class="btn btn-back" data-go="menu">← Back</button><h2>Credits</h2></div>
+      <div id="credits-body" class="credits"></div>
+    </div>
+  </section>
+
+</main>
+
+<div id="toasts"></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

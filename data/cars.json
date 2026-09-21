@@ -1,0 +1,677 @@
+[
+ {
+  "id": "abarth",
+  "name": "Abarth",
+  "img": "assets/logos/cars/abarth.png"
+ },
+ {
+  "id": "acura",
+  "name": "Acura",
+  "img": "assets/logos/cars/acura.png"
+ },
+ {
+  "id": "aiways",
+  "name": "Aiways",
+  "img": "assets/logos/cars/aiways.png"
+ },
+ {
+  "id": "alfa-romeo",
+  "name": "Alfa Romeo",
+  "img": "assets/logos/cars/alfa-romeo.png"
+ },
+ {
+  "id": "alpina",
+  "name": "Alpina",
+  "img": "assets/logos/cars/alpina.png"
+ },
+ {
+  "id": "alpine",
+  "name": "Alpine",
+  "img": "assets/logos/cars/alpine.png"
+ },
+ {
+  "id": "apollo",
+  "name": "Apollo",
+  "img": "assets/logos/cars/apollo.png"
+ },
+ {
+  "id": "ariel",
+  "name": "Ariel",
+  "img": "assets/logos/cars/ariel.png"
+ },
+ {
+  "id": "aston-martin",
+  "name": "Aston Martin",
+  "img": "assets/logos/cars/aston-martin.png"
+ },
+ {
+  "id": "audi",
+  "name": "Audi",
+  "img": "assets/logos/cars/audi.png"
+ },
+ {
+  "id": "bac",
+  "name": "BAC",
+  "img": "assets/logos/cars/bac.png"
+ },
+ {
+  "id": "bentley",
+  "name": "Bentley",
+  "img": "assets/logos/cars/bentley.png"
+ },
+ {
+  "id": "bmw",
+  "name": "BMW",
+  "img": "assets/logos/cars/bmw.png"
+ },
+ {
+  "id": "brabus",
+  "name": "Brabus",
+  "img": "assets/logos/cars/brabus.png"
+ },
+ {
+  "id": "bristol",
+  "name": "Bristol",
+  "img": "assets/logos/cars/bristol.png"
+ },
+ {
+  "id": "bugatti",
+  "name": "Bugatti",
+  "img": "assets/logos/cars/bugatti.png"
+ },
+ {
+  "id": "buick",
+  "name": "Buick",
+  "img": "assets/logos/cars/buick.png"
+ },
+ {
+  "id": "byd",
+  "name": "BYD",
+  "img": "assets/logos/cars/byd.png"
+ },
+ {
+  "id": "cadillac",
+  "name": "Cadillac",
+  "img": "assets/logos/cars/cadillac.png"
+ },
+ {
+  "id": "caterham",
+  "name": "Caterham",
+  "img": "assets/logos/cars/caterham.png"
+ },
+ {
+  "id": "chery",
+  "name": "Chery",
+  "img": "assets/logos/cars/chery.png"
+ },
+ {
+  "id": "chevrolet",
+  "name": "Chevrolet",
+  "img": "assets/logos/cars/chevrolet.png"
+ },
+ {
+  "id": "chrysler",
+  "name": "Chrysler",
+  "img": "assets/logos/cars/chrysler.png"
+ },
+ {
+  "id": "citroen",
+  "name": "Citroën",
+  "img": "assets/logos/cars/citroen.png"
+ },
+ {
+  "id": "cupra",
+  "name": "Cupra",
+  "img": "assets/logos/cars/cupra.png"
+ },
+ {
+  "id": "dacia",
+  "name": "Dacia",
+  "img": "assets/logos/cars/dacia.png"
+ },
+ {
+  "id": "daf",
+  "name": "DAF",
+  "img": "assets/logos/cars/daf.png"
+ },
+ {
+  "id": "daihatsu",
+  "name": "Daihatsu",
+  "img": "assets/logos/cars/daihatsu.png"
+ },
+ {
+  "id": "datsun",
+  "name": "Datsun",
+  "img": "assets/logos/cars/datsun.png"
+ },
+ {
+  "id": "dodge",
+  "name": "Dodge",
+  "img": "assets/logos/cars/dodge.png"
+ },
+ {
+  "id": "donkervoort",
+  "name": "Donkervoort",
+  "img": "assets/logos/cars/donkervoort.png"
+ },
+ {
+  "id": "ds",
+  "name": "DS",
+  "img": "assets/logos/cars/ds.png"
+ },
+ {
+  "id": "eagle",
+  "name": "Eagle",
+  "img": "assets/logos/cars/eagle.png"
+ },
+ {
+  "id": "ferrari",
+  "name": "Ferrari",
+  "img": "assets/logos/cars/ferrari.png"
+ },
+ {
+  "id": "fiat",
+  "name": "Fiat",
+  "img": "assets/logos/cars/fiat.png"
+ },
+ {
+  "id": "fisker",
+  "name": "Fisker",
+  "img": "assets/logos/cars/fisker.png"
+ },
+ {
+  "id": "ford",
+  "name": "Ford",
+  "img": "assets/logos/cars/ford.png"
+ },
+ {
+  "id": "freightliner",
+  "name": "Freightliner",
+  "img": "assets/logos/cars/freightliner.png"
+ },
+ {
+  "id": "geely",
+  "name": "Geely",
+  "img": "assets/logos/cars/geely.png"
+ },
+ {
+  "id": "genesis",
+  "name": "Genesis",
+  "img": "assets/logos/cars/genesis.png"
+ },
+ {
+  "id": "geo",
+  "name": "Geo",
+  "img": "assets/logos/cars/geo.png"
+ },
+ {
+  "id": "ginetta",
+  "name": "Ginetta",
+  "img": "assets/logos/cars/ginetta.png"
+ },
+ {
+  "id": "gmc",
+  "name": "GMC",
+  "img": "assets/logos/cars/gmc.png"
+ },
+ {
+  "id": "great-wall",
+  "name": "Great Wall",
+  "img": "assets/logos/cars/great-wall.png"
+ },
+ {
+  "id": "gumpert",
+  "name": "Gumpert",
+  "img": "assets/logos/cars/gumpert.png"
+ },
+ {
+  "id": "haval",
+  "name": "Haval",
+  "img": "assets/logos/cars/haval.png"
+ },
+ {
+  "id": "hennessey",
+  "name": "Hennessey",
+  "img": "assets/logos/cars/hennessey.png"
+ },
+ {
+  "id": "holden",
+  "name": "Holden",
+  "img": "assets/logos/cars/holden.png"
+ },
+ {
+  "id": "honda",
+  "name": "Honda",
+  "img": "assets/logos/cars/honda.png"
+ },
+ {
+  "id": "hongqi",
+  "name": "Hongqi",
+  "img": "assets/logos/cars/hongqi.png"
+ },
+ {
+  "id": "hummer",
+  "name": "Hummer",
+  "img": "assets/logos/cars/hummer.png"
+ },
+ {
+  "id": "hyundai",
+  "name": "Hyundai",
+  "img": "assets/logos/cars/hyundai.png"
+ },
+ {
+  "id": "infiniti",
+  "name": "Infiniti",
+  "img": "assets/logos/cars/infiniti.png"
+ },
+ {
+  "id": "isuzu",
+  "name": "Isuzu",
+  "img": "assets/logos/cars/isuzu.png"
+ },
+ {
+  "id": "iveco",
+  "name": "Iveco",
+  "img": "assets/logos/cars/iveco.png"
+ },
+ {
+  "id": "jaguar",
+  "name": "Jaguar",
+  "img": "assets/logos/cars/jaguar.png"
+ },
+ {
+  "id": "jeep",
+  "name": "Jeep",
+  "img": "assets/logos/cars/jeep.png"
+ },
+ {
+  "id": "kenworth",
+  "name": "Kenworth",
+  "img": "assets/logos/cars/kenworth.png"
+ },
+ {
+  "id": "kia",
+  "name": "Kia",
+  "img": "assets/logos/cars/kia.png"
+ },
+ {
+  "id": "koenigsegg",
+  "name": "Koenigsegg",
+  "img": "assets/logos/cars/koenigsegg.png"
+ },
+ {
+  "id": "lada",
+  "name": "Lada",
+  "img": "assets/logos/cars/lada.png"
+ },
+ {
+  "id": "lamborghini",
+  "name": "Lamborghini",
+  "img": "assets/logos/cars/lamborghini.png"
+ },
+ {
+  "id": "lancia",
+  "name": "Lancia",
+  "img": "assets/logos/cars/lancia.png"
+ },
+ {
+  "id": "land-rover",
+  "name": "Land Rover",
+  "img": "assets/logos/cars/land-rover.png"
+ },
+ {
+  "id": "lexus",
+  "name": "Lexus",
+  "img": "assets/logos/cars/lexus.png"
+ },
+ {
+  "id": "li-auto",
+  "name": "Li Auto",
+  "img": "assets/logos/cars/li-auto.png"
+ },
+ {
+  "id": "lincoln",
+  "name": "Lincoln",
+  "img": "assets/logos/cars/lincoln.png"
+ },
+ {
+  "id": "lotus",
+  "name": "Lotus",
+  "img": "assets/logos/cars/lotus.png"
+ },
+ {
+  "id": "lucid",
+  "name": "Lucid",
+  "img": "assets/logos/cars/lucid.png"
+ },
+ {
+  "id": "lynk-and-co",
+  "name": "Lynk & Co",
+  "img": "assets/logos/cars/lynk-and-co.png"
+ },
+ {
+  "id": "mack",
+  "name": "Mack",
+  "img": "assets/logos/cars/mack.png"
+ },
+ {
+  "id": "mahindra",
+  "name": "Mahindra",
+  "img": "assets/logos/cars/mahindra.png"
+ },
+ {
+  "id": "man",
+  "name": "MAN",
+  "img": "assets/logos/cars/man.png"
+ },
+ {
+  "id": "maserati",
+  "name": "Maserati",
+  "img": "assets/logos/cars/maserati.png"
+ },
+ {
+  "id": "maybach",
+  "name": "Maybach",
+  "img": "assets/logos/cars/maybach.png"
+ },
+ {
+  "id": "mazda",
+  "name": "Mazda",
+  "img": "assets/logos/cars/mazda.png"
+ },
+ {
+  "id": "mclaren",
+  "name": "McLaren",
+  "img": "assets/logos/cars/mclaren.png"
+ },
+ {
+  "id": "mercedes-amg",
+  "name": "Mercedes-AMG",
+  "img": "assets/logos/cars/mercedes-amg.png"
+ },
+ {
+  "id": "mercedes-benz",
+  "name": "Mercedes-Benz",
+  "img": "assets/logos/cars/mercedes-benz.png"
+ },
+ {
+  "id": "mercury",
+  "name": "Mercury",
+  "img": "assets/logos/cars/mercury.png"
+ },
+ {
+  "id": "mg",
+  "name": "MG",
+  "img": "assets/logos/cars/mg.png"
+ },
+ {
+  "id": "mini",
+  "name": "Mini",
+  "img": "assets/logos/cars/mini.png"
+ },
+ {
+  "id": "mitsubishi",
+  "name": "Mitsubishi",
+  "img": "assets/logos/cars/mitsubishi.png"
+ },
+ {
+  "id": "morgan",
+  "name": "Morgan",
+  "img": "assets/logos/cars/morgan.png"
+ },
+ {
+  "id": "nio",
+  "name": "NIO",
+  "img": "assets/logos/cars/nio.png"
+ },
+ {
+  "id": "nissan",
+  "name": "Nissan",
+  "img": "assets/logos/cars/nissan.png"
+ },
+ {
+  "id": "noble",
+  "name": "Noble",
+  "img": "assets/logos/cars/noble.png"
+ },
+ {
+  "id": "oldsmobile",
+  "name": "Oldsmobile",
+  "img": "assets/logos/cars/oldsmobile.png"
+ },
+ {
+  "id": "opel",
+  "name": "Opel",
+  "img": "assets/logos/cars/opel.png"
+ },
+ {
+  "id": "packard",
+  "name": "Packard",
+  "img": "assets/logos/cars/packard.png"
+ },
+ {
+  "id": "pagani",
+  "name": "Pagani",
+  "img": "assets/logos/cars/pagani.png"
+ },
+ {
+  "id": "panoz",
+  "name": "Panoz",
+  "img": "assets/logos/cars/panoz.png"
+ },
+ {
+  "id": "perodua",
+  "name": "Perodua",
+  "img": "assets/logos/cars/perodua.png"
+ },
+ {
+  "id": "peterbilt",
+  "name": "Peterbilt",
+  "img": "assets/logos/cars/peterbilt.png"
+ },
+ {
+  "id": "peugeot",
+  "name": "Peugeot",
+  "img": "assets/logos/cars/peugeot.png"
+ },
+ {
+  "id": "plymouth",
+  "name": "Plymouth",
+  "img": "assets/logos/cars/plymouth.png"
+ },
+ {
+  "id": "polestar",
+  "name": "Polestar",
+  "img": "assets/logos/cars/polestar.png"
+ },
+ {
+  "id": "pontiac",
+  "name": "Pontiac",
+  "img": "assets/logos/cars/pontiac.png"
+ },
+ {
+  "id": "porsche",
+  "name": "Porsche",
+  "img": "assets/logos/cars/porsche.png"
+ },
+ {
+  "id": "proton",
+  "name": "Proton",
+  "img": "assets/logos/cars/proton.png"
+ },
+ {
+  "id": "radical",
+  "name": "Radical",
+  "img": "assets/logos/cars/radical.png"
+ },
+ {
+  "id": "ram",
+  "name": "RAM",
+  "img": "assets/logos/cars/ram.png"
+ },
+ {
+  "id": "renault",
+  "name": "Renault",
+  "img": "assets/logos/cars/renault.png"
+ },
+ {
+  "id": "rimac",
+  "name": "Rimac",
+  "img": "assets/logos/cars/rimac.png"
+ },
+ {
+  "id": "rivian",
+  "name": "Rivian",
+  "img": "assets/logos/cars/rivian.png"
+ },
+ {
+  "id": "rolls-royce",
+  "name": "Rolls-Royce",
+  "img": "assets/logos/cars/rolls-royce.png"
+ },
+ {
+  "id": "rover",
+  "name": "Rover",
+  "img": "assets/logos/cars/rover.png"
+ },
+ {
+  "id": "ruf",
+  "name": "RUF",
+  "img": "assets/logos/cars/ruf.png"
+ },
+ {
+  "id": "saab",
+  "name": "Saab",
+  "img": "assets/logos/cars/saab.png"
+ },
+ {
+  "id": "saleen",
+  "name": "Saleen",
+  "img": "assets/logos/cars/saleen.png"
+ },
+ {
+  "id": "saturn",
+  "name": "Saturn",
+  "img": "assets/logos/cars/saturn.png"
+ },
+ {
+  "id": "scania",
+  "name": "Scania",
+  "img": "assets/logos/cars/scania.png"
+ },
+ {
+  "id": "scion",
+  "name": "Scion",
+  "img": "assets/logos/cars/scion.png"
+ },
+ {
+  "id": "seat",
+  "name": "SEAT",
+  "img": "assets/logos/cars/seat.png"
+ },
+ {
+  "id": "skoda",
+  "name": "Škoda",
+  "img": "assets/logos/cars/skoda.png"
+ },
+ {
+  "id": "smart",
+  "name": "Smart",
+  "img": "assets/logos/cars/smart.png"
+ },
+ {
+  "id": "spyker",
+  "name": "Spyker",
+  "img": "assets/logos/cars/spyker.png"
+ },
+ {
+  "id": "ssangyong",
+  "name": "SsangYong",
+  "img": "assets/logos/cars/ssangyong.png"
+ },
+ {
+  "id": "ssc",
+  "name": "SSC",
+  "img": "assets/logos/cars/ssc.png"
+ },
+ {
+  "id": "studebaker",
+  "name": "Studebaker",
+  "img": "assets/logos/cars/studebaker.png"
+ },
+ {
+  "id": "subaru",
+  "name": "Subaru",
+  "img": "assets/logos/cars/subaru.png"
+ },
+ {
+  "id": "suzuki",
+  "name": "Suzuki",
+  "img": "assets/logos/cars/suzuki.png"
+ },
+ {
+  "id": "tata",
+  "name": "Tata",
+  "img": "assets/logos/cars/tata.png"
+ },
+ {
+  "id": "tesla",
+  "name": "Tesla",
+  "img": "assets/logos/cars/tesla.png"
+ },
+ {
+  "id": "toyota",
+  "name": "Toyota",
+  "img": "assets/logos/cars/toyota.png"
+ },
+ {
+  "id": "vauxhall",
+  "name": "Vauxhall",
+  "img": "assets/logos/cars/vauxhall.png"
+ },
+ {
+  "id": "vector",
+  "name": "Vector",
+  "img": "assets/logos/cars/vector.png"
+ },
+ {
+  "id": "vinfast",
+  "name": "VinFast",
+  "img": "assets/logos/cars/vinfast.png"
+ },
+ {
+  "id": "volkswagen",
+  "name": "Volkswagen",
+  "img": "assets/logos/cars/volkswagen.png"
+ },
+ {
+  "id": "volvo",
+  "name": "Volvo",
+  "img": "assets/logos/cars/volvo.png"
+ },
+ {
+  "id": "w-motors",
+  "name": "W Motors",
+  "img": "assets/logos/cars/w-motors.png"
+ },
+ {
+  "id": "wiesmann",
+  "name": "Wiesmann",
+  "img": "assets/logos/cars/wiesmann.png"
+ },
+ {
+  "id": "xpeng",
+  "name": "XPeng",
+  "img": "assets/logos/cars/xpeng.png"
+ },
+ {
+  "id": "zeekr",
+  "name": "Zeekr",
+  "img": "assets/logos/cars/zeekr.png"
+ },
+ {
+  "id": "zenvo",
+  "name": "Zenvo",
+  "img": "assets/logos/cars/zenvo.png"
+ }
+]

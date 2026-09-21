@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function isOwner(uid) { return signedIn() && request.auth.uid == uid; }
+    function validName(n) { return n is string && n.size() >= 3 && n.size() <= 16 && n.matches('^[A-Za-z0-9_ ]+$'); }
+
+    // Public profile: anyone signed in can read (leaderboard, other pilots' hangars); only the owner writes.
+    match /users/{uid} {
+      allow read: if signedIn();
+      allow create: if isOwner(uid)
+        && validName(request.resource.data.username)
+        && request.resource.data.usernameLower == request.resource.data.username.lower()
+        && request.resource.data.bestRun == 0
+        && request.resource.data.totalPoints == 0
+        && request.resource.data.coinsSpent == 0;
+      allow update: if isOwner(uid)
+        && request.resource.data.username == resource.data.username
+        && request.resource.data.usernameLower == resource.data.usernameLower
+        && request.resource.data.bestRun >= resource.data.bestRun
+        && request.resource.data.totalPoints >= resource.data.totalPoints
+        && request.resource.data.coinsSpent >= resource.data.coinsSpent;
+      allow delete: if false;
+
+      // Private per-question stats: owner only.
+      match /private/{doc} {
+        allow read, write: if isOwner(uid);
+      }
+    }
+
+    // Username registry: one doc per lower-cased name, created once, never changed.
+    match /usernames/{name} {
+      allow read: if signedIn();
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if false;
+    }
+  }
+}

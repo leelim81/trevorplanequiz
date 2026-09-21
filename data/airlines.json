@@ -1,0 +1,392 @@
+[
+ {
+  "id": "AEE",
+  "name": "Aegean",
+  "img": "assets/logos/airlines/AEE.png"
+ },
+ {
+  "id": "EIN",
+  "name": "Aer Lingus",
+  "img": "assets/logos/airlines/EIN.png"
+ },
+ {
+  "id": "AFL",
+  "name": "Aeroflot",
+  "img": "assets/logos/airlines/AFL.png"
+ },
+ {
+  "id": "ARG",
+  "name": "Aerolíneas Argentinas",
+  "img": "assets/logos/airlines/ARG.png"
+ },
+ {
+  "id": "AMX",
+  "name": "Aeroméxico",
+  "img": "assets/logos/airlines/AMX.png"
+ },
+ {
+  "id": "DAH",
+  "name": "Air Algérie",
+  "img": "assets/logos/airlines/DAH.png"
+ },
+ {
+  "id": "ACA",
+  "name": "Air Canada",
+  "img": "assets/logos/airlines/ACA.png"
+ },
+ {
+  "id": "CCA",
+  "name": "Air China",
+  "img": "assets/logos/airlines/CCA.png"
+ },
+ {
+  "id": "AFR",
+  "name": "Air France",
+  "img": "assets/logos/airlines/AFR.png"
+ },
+ {
+  "id": "AIC",
+  "name": "Air India",
+  "img": "assets/logos/airlines/AIC.png"
+ },
+ {
+  "id": "ANZ",
+  "name": "Air New Zealand",
+  "img": "assets/logos/airlines/ANZ.png"
+ },
+ {
+  "id": "AXM",
+  "name": "AirAsia",
+  "img": "assets/logos/airlines/AXM.png"
+ },
+ {
+  "id": "ASA",
+  "name": "Alaska Airlines",
+  "img": "assets/logos/airlines/ASA.png"
+ },
+ {
+  "id": "AAL",
+  "name": "American Airlines",
+  "img": "assets/logos/airlines/AAL.png"
+ },
+ {
+  "id": "ANA",
+  "name": "ANA",
+  "img": "assets/logos/airlines/ANA.png"
+ },
+ {
+  "id": "AAR",
+  "name": "Asiana",
+  "img": "assets/logos/airlines/AAR.png"
+ },
+ {
+  "id": "AUA",
+  "name": "Austrian",
+  "img": "assets/logos/airlines/AUA.png"
+ },
+ {
+  "id": "AVA",
+  "name": "Avianca",
+  "img": "assets/logos/airlines/AVA.png"
+ },
+ {
+  "id": "AZU",
+  "name": "Azul",
+  "img": "assets/logos/airlines/AZU.png"
+ },
+ {
+  "id": "BAW",
+  "name": "British Airways",
+  "img": "assets/logos/airlines/BAW.png"
+ },
+ {
+  "id": "CPA",
+  "name": "Cathay Pacific",
+  "img": "assets/logos/airlines/CPA.png"
+ },
+ {
+  "id": "CEB",
+  "name": "Cebu Pacific",
+  "img": "assets/logos/airlines/CEB.png"
+ },
+ {
+  "id": "CAL",
+  "name": "China Airlines",
+  "img": "assets/logos/airlines/CAL.png"
+ },
+ {
+  "id": "CES",
+  "name": "China Eastern",
+  "img": "assets/logos/airlines/CES.png"
+ },
+ {
+  "id": "CSN",
+  "name": "China Southern",
+  "img": "assets/logos/airlines/CSN.png"
+ },
+ {
+  "id": "CMP",
+  "name": "Copa Airlines",
+  "img": "assets/logos/airlines/CMP.png"
+ },
+ {
+  "id": "DAL",
+  "name": "Delta Air Lines",
+  "img": "assets/logos/airlines/DAL.png"
+ },
+ {
+  "id": "EZY",
+  "name": "easyJet",
+  "img": "assets/logos/airlines/EZY.png"
+ },
+ {
+  "id": "MSR",
+  "name": "EgyptAir",
+  "img": "assets/logos/airlines/MSR.png"
+ },
+ {
+  "id": "ELY",
+  "name": "El Al",
+  "img": "assets/logos/airlines/ELY.png"
+ },
+ {
+  "id": "UAE",
+  "name": "Emirates",
+  "img": "assets/logos/airlines/UAE.png"
+ },
+ {
+  "id": "ETH",
+  "name": "Ethiopian Airlines",
+  "img": "assets/logos/airlines/ETH.png"
+ },
+ {
+  "id": "ETD",
+  "name": "Etihad",
+  "img": "assets/logos/airlines/ETD.png"
+ },
+ {
+  "id": "EVA",
+  "name": "EVA Air",
+  "img": "assets/logos/airlines/EVA.png"
+ },
+ {
+  "id": "FJI",
+  "name": "Fiji Airways",
+  "img": "assets/logos/airlines/FJI.png"
+ },
+ {
+  "id": "FIN",
+  "name": "Finnair",
+  "img": "assets/logos/airlines/FIN.png"
+ },
+ {
+  "id": "FFT",
+  "name": "Frontier",
+  "img": "assets/logos/airlines/FFT.png"
+ },
+ {
+  "id": "GIA",
+  "name": "Garuda Indonesia",
+  "img": "assets/logos/airlines/GIA.png"
+ },
+ {
+  "id": "GLO",
+  "name": "GOL",
+  "img": "assets/logos/airlines/GLO.png"
+ },
+ {
+  "id": "GFA",
+  "name": "Gulf Air",
+  "img": "assets/logos/airlines/GFA.png"
+ },
+ {
+  "id": "IBE",
+  "name": "Iberia",
+  "img": "assets/logos/airlines/IBE.png"
+ },
+ {
+  "id": "IGO",
+  "name": "IndiGo",
+  "img": "assets/logos/airlines/IGO.png"
+ },
+ {
+  "id": "JAL",
+  "name": "Japan Airlines",
+  "img": "assets/logos/airlines/JAL.png"
+ },
+ {
+  "id": "JBU",
+  "name": "JetBlue",
+  "img": "assets/logos/airlines/JBU.png"
+ },
+ {
+  "id": "JST",
+  "name": "Jetstar",
+  "img": "assets/logos/airlines/JST.png"
+ },
+ {
+  "id": "KQA",
+  "name": "Kenya Airways",
+  "img": "assets/logos/airlines/KQA.png"
+ },
+ {
+  "id": "KLM",
+  "name": "KLM",
+  "img": "assets/logos/airlines/KLM.png"
+ },
+ {
+  "id": "KAL",
+  "name": "Korean Air",
+  "img": "assets/logos/airlines/KAL.png"
+ },
+ {
+  "id": "KAC",
+  "name": "Kuwait Airways",
+  "img": "assets/logos/airlines/KAC.png"
+ },
+ {
+  "id": "LAN",
+  "name": "LATAM",
+  "img": "assets/logos/airlines/LAN.png"
+ },
+ {
+  "id": "TAM",
+  "name": "LATAM Brasil",
+  "img": "assets/logos/airlines/TAM.png"
+ },
+ {
+  "id": "LOT",
+  "name": "LOT Polish Airlines",
+  "img": "assets/logos/airlines/LOT.png"
+ },
+ {
+  "id": "DLH",
+  "name": "Lufthansa",
+  "img": "assets/logos/airlines/DLH.png"
+ },
+ {
+  "id": "MAS",
+  "name": "Malaysia Airlines",
+  "img": "assets/logos/airlines/MAS.png"
+ },
+ {
+  "id": "NAX",
+  "name": "Norwegian",
+  "img": "assets/logos/airlines/NAX.png"
+ },
+ {
+  "id": "PAL",
+  "name": "Philippine Airlines",
+  "img": "assets/logos/airlines/PAL.png"
+ },
+ {
+  "id": "QFA",
+  "name": "Qantas",
+  "img": "assets/logos/airlines/QFA.png"
+ },
+ {
+  "id": "QTR",
+  "name": "Qatar Airways",
+  "img": "assets/logos/airlines/QTR.png"
+ },
+ {
+  "id": "RAM",
+  "name": "Royal Air Maroc",
+  "img": "assets/logos/airlines/RAM.png"
+ },
+ {
+  "id": "RJA",
+  "name": "Royal Jordanian",
+  "img": "assets/logos/airlines/RJA.png"
+ },
+ {
+  "id": "RYR",
+  "name": "Ryanair",
+  "img": "assets/logos/airlines/RYR.png"
+ },
+ {
+  "id": "SAS",
+  "name": "SAS",
+  "img": "assets/logos/airlines/SAS.png"
+ },
+ {
+  "id": "SVA",
+  "name": "Saudia",
+  "img": "assets/logos/airlines/SVA.png"
+ },
+ {
+  "id": "SIA",
+  "name": "Singapore Airlines",
+  "img": "assets/logos/airlines/SIA.png"
+ },
+ {
+  "id": "SAA",
+  "name": "South African Airways",
+  "img": "assets/logos/airlines/SAA.png"
+ },
+ {
+  "id": "SWA",
+  "name": "Southwest",
+  "img": "assets/logos/airlines/SWA.png"
+ },
+ {
+  "id": "SWR",
+  "name": "SWISS",
+  "img": "assets/logos/airlines/SWR.png"
+ },
+ {
+  "id": "TAP",
+  "name": "TAP Air Portugal",
+  "img": "assets/logos/airlines/TAP.png"
+ },
+ {
+  "id": "THA",
+  "name": "Thai Airways",
+  "img": "assets/logos/airlines/THA.png"
+ },
+ {
+  "id": "THY",
+  "name": "Turkish Airlines",
+  "img": "assets/logos/airlines/THY.png"
+ },
+ {
+  "id": "UAL",
+  "name": "United Airlines",
+  "img": "assets/logos/airlines/UAL.png"
+ },
+ {
+  "id": "VJC",
+  "name": "VietJet Air",
+  "img": "assets/logos/airlines/VJC.png"
+ },
+ {
+  "id": "HVN",
+  "name": "Vietnam Airlines",
+  "img": "assets/logos/airlines/HVN.png"
+ },
+ {
+  "id": "VOZ",
+  "name": "Virgin Australia",
+  "img": "assets/logos/airlines/VOZ.png"
+ },
+ {
+  "id": "VOI",
+  "name": "Volaris",
+  "img": "assets/logos/airlines/VOI.png"
+ },
+ {
+  "id": "VLG",
+  "name": "Vueling",
+  "img": "assets/logos/airlines/VLG.png"
+ },
+ {
+  "id": "WJA",
+  "name": "WestJet",
+  "img": "assets/logos/airlines/WJA.png"
+ },
+ {
+  "id": "WZZ",
+  "name": "Wizz Air",
+  "img": "assets/logos/airlines/WZZ.png"
+ }
+]
