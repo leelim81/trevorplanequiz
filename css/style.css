@@ -257,7 +257,7 @@ button { font-family: inherit; }
 .badge.locked { opacity: .45; filter: grayscale(1); box-shadow: 0 4px 0 var(--grey); }
 .credits { background: rgba(255,255,255,.9); border-radius: var(--radius); padding: 16px; line-height: 1.5; }
 .credits a { color: var(--blue-d); }
-.credits h3 { color: var(--ink); text-shadow: none; }
+.page .credits h3 { color: var(--ink); text-shadow: none; }
 .page h2, .page h3 { color: #fff; text-shadow: -2px -2px 0 var(--blue-d), 2px -2px 0 var(--blue-d), -2px 2px 0 var(--blue-d), 2px 2px 0 var(--blue-d), 0 -2px 0 var(--blue-d), 0 2px 0 var(--blue-d), -2px 0 0 var(--blue-d), 2px 0 0 var(--blue-d), 0 5px 0 var(--blue-d), 0 9px 16px rgba(2,132,199,.45); }
 
 /* ============ Badge modal ============ */
