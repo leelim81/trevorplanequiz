@@ -16,7 +16,7 @@ registerScreen('reward', { enter, leave });
 function enter({ cardId, completes = false } = {}) {
   ctx = { cardId, completes, revealed: false, ready: false };
   const { planeIdx } = parseCardId(cardId);
-  $('#reward-title').textContent = `You won a ${PLANES[planeIdx].name} card! 🎁`;
+  $('#reward-title').textContent = `You won a ${PLANES[planeIdx].name} card!`;
   gift.hidden = false; btnWatch.hidden = false; wrap.hidden = true; reveal.hidden = true; btnDone.hidden = true;
   reveal.replaceChildren(); fill.style.width = '0';
   adTimer.textContent = 'Reward in …'; adClose.disabled = true; adClose.classList.remove('ready');

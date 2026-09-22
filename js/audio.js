@@ -1,6 +1,7 @@
 // All sound is synthesised with the Web Audio API — no audio files needed.
 const KEY = 'tpq-muted';
 let ctx = null, master = null, sfxBus = null, musicBus = null;
+const MUSIC_VOL = 0.165; // ~30% of the original 0.55
 let muted = false;
 try { muted = localStorage.getItem(KEY) === '1'; } catch { /* ignore */ }
 
@@ -11,7 +12,7 @@ function ensure() {
   ctx = new AC();
   master = ctx.createGain(); master.gain.value = muted ? 0 : 1; master.connect(ctx.destination);
   sfxBus = ctx.createGain(); sfxBus.gain.value = 0.9; sfxBus.connect(master);
-  musicBus = ctx.createGain(); musicBus.gain.value = 0.55; musicBus.connect(master);
+  musicBus = ctx.createGain(); musicBus.gain.value = MUSIC_VOL; musicBus.connect(master);
   return true;
 }
 
@@ -116,7 +117,7 @@ export function startMusic() {
 export function stopMusic() { wantMusic = false; clearInterval(musicTimer); musicTimer = 0; }
 export function duckMusic(on) {
   ducked = on;
-  if (musicBus) musicBus.gain.setTargetAtTime(on ? 0.0 : 0.55, ctx.currentTime, 0.15);
+  if (musicBus) musicBus.gain.setTargetAtTime(on ? 0.0 : MUSIC_VOL, ctx.currentTime, 0.15);
 }
 export const musicWanted = () => wantMusic;
 
@@ -127,4 +128,4 @@ function onGesture() {
 }
 document.addEventListener('pointerdown', onGesture, { capture: true });
 document.addEventListener('keydown', onGesture, { capture: true });
-document.addEventListener('visibilitychange', () => { if (document.hidden) { if (musicBus) musicBus.gain.value = 0; } else if (musicBus) musicBus.gain.value = ducked ? 0 : 0.55; });
+document.addEventListener('visibilitychange', () => { if (document.hidden) { if (musicBus) musicBus.gain.value = 0; } else if (musicBus) musicBus.gain.value = ducked ? 0 : MUSIC_VOL; });
