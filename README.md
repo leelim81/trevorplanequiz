@@ -13,6 +13,9 @@ Plain HTML + CSS + JavaScript (no build step), Firebase for Google sign-in and d
   Answer inside the gold part of the timer bar (first second) for a bonus point. 3 points = 1 coin.
 - **Claw machine**: 1 coin per try, 50% chance to win a trading card. Watch the video to unwrap the card.
 - Each plane has 4 cards (nose, wings, fuselage, tail). Collect all 4 and watch the plane build itself in 3D.
+  The claw never drops a card you already own until you have all 40; after that it's the **bonus round** — extra
+  copies drop (steered toward the plane with the fewest sets) and each plane shows how many complete sets you have (×N).
+- Accounts listed in `VIP_EMAILS` in `js/config.js` start with every card (100–200 sets per plane) and skip the reward video.
 - **Leaderboard** shows the best single runs. Tap a pilot to see their hangar and badges.
 
 ## One-time Firebase setup (about 10 minutes)
@@ -39,7 +42,7 @@ ffmpeg -i input.mp4 -vf "scale=-2:720" -c:v libx264 -crf 28 -preset slow -c:a aa
 
 If a clip fails to load, the game shows the card after a short pause instead.
 
-To test without signing in, open the site with `?guest=1` added to the URL.
+To test without signing in, open the site with `?guest=1` added to the URL (`?guest=1&vip=1` also tests the VIP path).
 
 ## Tuning
 

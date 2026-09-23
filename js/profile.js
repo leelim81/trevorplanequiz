@@ -22,6 +22,6 @@ registerScreen('profile', {
     $('#profile-badges').replaceChildren(...BADGES.map((b) => el('div', { class: `badge ${owned.has(b.id) ? '' : 'locked'}`, title: b.desc }, [
       el('div', { class: 'badge-icon', text: b.icon }), el('div', { class: 'badge-name', text: b.name }), el('div', { class: 'badge-desc', text: b.desc }),
     ])));
-    await renderCollectionGrid($('#profile-collection'), p.ownedCards || [], { readOnly: true });
+    await renderCollectionGrid($('#profile-collection'), p, { readOnly: true, from: 'profile' });
   },
 });

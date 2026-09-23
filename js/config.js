@@ -9,6 +9,9 @@ export const firebaseConfig = {
   appId: "1:831520965062:web:63691188f4d8bc5b44b2c7",
 };
 
+// Players who get every card up front and never see the reward video.
+export const VIP_EMAILS = ['leelim81@gmail.com'];
+
 // Game tuning. All timings in milliseconds.
 export const GAME = {
   TIMER_MS: 3000,        // time to answer a question

@@ -3,7 +3,7 @@ import { GAME } from './config.js';
 import { registerScreen, showScreen, $, toast, sleep } from './ui.js';
 import { state, coins, markDirty, save, refreshHud } from './store.js';
 import { PLANES } from './planes.js';
-import { pickDrop, isPlaneComplete } from './cards.js';
+import { pickDrop, addCard, allOwned } from './cards.js';
 import { evaluateBadges } from './badges.js';
 import * as audio from './audio.js';
 import { THREE, createRenderer, fitRenderer, disposeRenderer, addLights, loadPlane, animate, easeOutCubic, easeInOutCubic, easeOutBack } from './three-common.js';
@@ -19,10 +19,9 @@ btnDrop.addEventListener('click', () => drop());
 function setMsg(t) { msg.textContent = t; }
 function updateCoins() {
   $('#claw-coins').textContent = `🪙 ${coins()}`;
-  const allDone = state.profile.ownedCards.length >= PLANES.length * 4;
-  btnDrop.disabled = !g || g.busy || coins() < 1 || allDone;
-  if (allDone) setMsg('🏆 You have collected every card!');
-  else if (coins() < 1) setMsg('Play the quiz to earn coins — 3 points = 1 coin');
+  btnDrop.disabled = !g || g.busy || coins() < 1;
+  if (coins() < 1) setMsg('Play the quiz to earn coins — 3 points = 1 coin');
+  else if (allOwned(state.profile)) setMsg('🏆 Bonus round! Win extra sets of your planes');
 }
 
 function toyPositions() {
@@ -172,7 +171,7 @@ function leave() {
 async function drop() {
   if (!g || g.busy || coins() < 1) return;
   const p = state.profile;
-  const card = pickDrop(p.ownedCards);
+  const card = pickDrop(p);
   if (!card) { updateCoins(); return; }
   g.busy = true; g.sweeping = false; btnDrop.disabled = true;
   p.coinsSpent++; p.clawTries = (p.clawTries || 0) + 1;
@@ -212,13 +211,11 @@ async function drop() {
     await animate(300, (t) => setProngs(claw, 0.15 + t * 0.85), easeOutCubic);
     audio.play('drop');
     if (toy) { const y0 = toy.position.y; await animate(500, (t) => { toy.position.y = y0 - (y0 + 0.6) * t; toy.scale.multiplyScalar(0.985); }, easeInOutCubic); }
-    p.ownedCards.push(card.id);
+    const { completes, setNumber, copies } = addCard(p, card.id);
     p.clawWins = (p.clawWins || 0) + 1; p.clawStreak = (p.clawStreak || 0) + 1;
-    const completes = isPlaneComplete(card.planeIdx, p.ownedCards) && !p.completedPlanes.includes(card.planeIdx);
-    if (completes) p.completedPlanes.push(card.planeIdx);
     markDirty(); await save(true);
     evaluateBadges();
-    showScreen('reward', { cardId: card.id, completes });
+    showScreen('reward', { cardId: card.id, completes, setNumber, copies });
   } else {
     setMsg('Oh no, it slipped! 😅');
     audio.play('lose');

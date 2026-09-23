@@ -9,7 +9,7 @@ const btnDone = $('#btn-assembly-done');
 btnDone.addEventListener('click', () => showScreen('collection'));
 
 registerScreen('assembly', {
-  enter: async ({ planeIdx = 0 } = {}) => {
+  enter: async ({ planeIdx = 0, setNumber = 1 } = {}) => {
     const plane = PLANES[planeIdx];
     $('#assembly-title').textContent = `Building your ${plane.name}…`;
     btnDone.hidden = true;
@@ -55,7 +55,7 @@ registerScreen('assembly', {
     if (!a?.alive) return;
     for (const o of pieces) { o.position.set(0, 0, 0); forEachMaterial(o, (mat) => { mat.clippingPlanes = null; }); }
     pieces.slice(1).forEach((o) => scene.remove(o));
-    $('#assembly-title').textContent = `${plane.emoji} ${plane.name} complete!`;
+    $('#assembly-title').textContent = setNumber > 1 ? `${plane.emoji} ${plane.name} ×${setNumber}!` : `${plane.emoji} ${plane.name} complete!`;
     confettiBurst('big'); audio.play('bigwin');
     btnDone.hidden = false;
     await animate(6000, (t, raw) => { a && (a.angle = 0.6 + raw * Math.PI * 2 * 1.5); }, (t) => t);

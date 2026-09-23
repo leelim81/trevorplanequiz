@@ -65,13 +65,14 @@ export function preloadCards(planeIdx, owned) {
 }
 
 // Builds a .tcard element; the picture fills in when the render finishes.
-export function createCardElement({ planeIdx, part, owned = true, big = false, placeholder = false }) {
+export function createCardElement({ planeIdx, part, owned = true, big = false, placeholder = false, count = 0 }) {
   const plane = PLANES[planeIdx];
   const card = el('div', { class: `tcard ${owned ? '' : 'locked'} ${big ? 'big' : ''}`, style: `--c1:${plane.colors[0]};--c2:${plane.colors[1]}` });
   const imgWrap = el('div', { class: 'tcard-img' });
   card.append(imgWrap,
     el('div', { class: 'tcard-name', text: plane.name }),
     el('div', { class: 'tcard-part' }, [el('span', { text: owned ? partName(part) : '???' }), el('span', { class: 'tcard-no', text: partNumber(plane, part) })]));
+  if (owned && count >= 2) card.append(el('span', { class: 'tcard-count', text: `×${count}` }));
   if (placeholder) {
     imgWrap.append(el('div', { text: '❓', style: 'font-size:2.2rem' }));
   } else {

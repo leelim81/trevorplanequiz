@@ -1,9 +1,10 @@
 // In-memory game state + persistence (Firestore, or localStorage in guest mode).
-import { GAME } from './config.js';
+import { GAME, VIP_EMAILS } from './config.js';
+import { ensureCardCounts, grantEverything } from './cards.js';
 import * as fb from './firebase.js';
 import { updateHud } from './ui.js';
 
-export const state = { user: null, uid: null, profile: null, stats: null, guest: false };
+export const state = { user: null, uid: null, profile: null, stats: null, guest: false, noAds: false };
 const GUEST_KEY = 'tpq-guest-v1';
 let dirty = false;
 
@@ -11,7 +12,7 @@ export function newProfile(username) {
   return {
     username, usernameLower: username.toLowerCase(), createdAt: Date.now(),
     bestRun: 0, totalPoints: 0, coinsSpent: 0,
-    badges: [], ownedCards: [], completedPlanes: [],
+    badges: [], ownedCards: [], cardCounts: {}, completedPlanes: [],
     clawWins: 0, clawTries: 0, correctTotal: 0, wrongTotal: 0, runs: 0,
   };
 }
@@ -43,8 +44,9 @@ export async function loadProfile(user) {
   state.user = user; state.uid = user.uid; state.guest = false;
   const [pSnap, sSnap] = await Promise.all([fb.fs.getDoc(userRef(user.uid)), fb.fs.getDoc(statsRef(user.uid))]);
   if (!pSnap.exists()) { state.profile = null; state.stats = null; return null; }
-  state.profile = { ...newProfile(''), ...pSnap.data() };
+  state.profile = ensureCardCounts({ ...newProfile(''), ...pSnap.data() });
   state.stats = sSnap.exists() ? { ...newStats(), ...sSnap.data() } : newStats();
+  applyVip(user.email);
   refreshHud();
   return state.profile;
 }
@@ -66,6 +68,17 @@ export async function createProfile(username) {
   return profile;
 }
 
+// VIP players skip the reward video and start with every card (100–200 sets per plane, rolled once).
+export function applyVip(email) {
+  const vip = VIP_EMAILS.includes((email || '').toLowerCase());
+  state.noAds = vip;
+  const p = state.profile;
+  if (!vip || !p || p.vipGranted) return;
+  grantEverything(p, () => 100 + Math.floor(Math.random() * 101));
+  p.vipGranted = true;
+  markDirty(); save(true);
+}
+
 export function markDirty() { dirty = true; }
 
 // Writes the public profile + private stats. Called every few questions, at run end and on events.
@@ -77,7 +90,7 @@ export async function save(force = false) {
   const pub = {
     username: p.username, usernameLower: p.usernameLower,
     bestRun: p.bestRun, totalPoints: p.totalPoints, coinsSpent: p.coinsSpent,
-    badges: p.badges, ownedCards: p.ownedCards, completedPlanes: p.completedPlanes,
+    badges: p.badges, ownedCards: p.ownedCards, cardCounts: p.cardCounts || {}, completedPlanes: p.completedPlanes, vipGranted: !!p.vipGranted,
     clawWins: p.clawWins, clawTries: p.clawTries, correctTotal: p.correctTotal, wrongTotal: p.wrongTotal, runs: p.runs,
     updatedAt: fb.fs.serverTimestamp(),
   };
@@ -109,8 +122,9 @@ export function startGuest() {
   state.guest = true; state.uid = 'guest';
   try {
     const raw = localStorage.getItem(GUEST_KEY);
-    if (raw) { const d = JSON.parse(raw); state.profile = { ...newProfile(''), ...d.profile }; state.stats = { ...newStats(), ...d.stats }; }
+    if (raw) { const d = JSON.parse(raw); state.profile = ensureCardCounts({ ...newProfile(''), ...d.profile }); state.stats = { ...newStats(), ...d.stats }; }
   } catch { /* ignore */ }
+  if (new URLSearchParams(location.search).has('vip')) applyVip(VIP_EMAILS[0]); // ?guest=1&vip=1 for testing
   refreshHud();
   return state.profile;
 }

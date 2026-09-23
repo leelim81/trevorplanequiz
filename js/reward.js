@@ -2,6 +2,7 @@
 import { GAME } from './config.js';
 import { registerScreen, showScreen, $, pick, confettiBurst } from './ui.js';
 import { parseCardId } from './cards.js';
+import { state } from './store.js';
 import { createCardElement } from './cardRender.js';
 import { PLANES } from './planes.js';
 import * as audio from './audio.js';
@@ -13,10 +14,11 @@ let ctx = null, lastTime = 0, fallbackTimer = 0;
 
 registerScreen('reward', { enter, leave });
 
-function enter({ cardId, completes = false } = {}) {
-  ctx = { cardId, completes, revealed: false, ready: false };
+function enter({ cardId, completes = false, setNumber = 1, copies = 1 } = {}) {
+  ctx = { cardId, completes, setNumber, copies, revealed: false, ready: false };
   const { planeIdx } = parseCardId(cardId);
-  $('#reward-title').textContent = `You won a ${PLANES[planeIdx].name} card!`;
+  $('#reward-title').textContent = copies > 1 ? `Another ${PLANES[planeIdx].name} card!` : `You won a ${PLANES[planeIdx].name} card!`;
+  btnWatch.textContent = state.noAds ? '🎁 Unwrap it!' : '▶ Watch to unwrap it';
   gift.hidden = false; btnWatch.hidden = false; wrap.hidden = true; reveal.hidden = true; btnDone.hidden = true;
   reveal.replaceChildren(); fill.style.width = '0';
   adTimer.textContent = 'Reward in …'; adClose.disabled = true; adClose.classList.remove('ready');
@@ -26,6 +28,7 @@ function enter({ cardId, completes = false } = {}) {
 function leave() { video.pause(); video.removeAttribute('src'); video.load(); clearTimeout(fallbackTimer); audio.duckMusic(false); ctx = null; }
 
 btnWatch.addEventListener('click', () => {
+  if (state.noAds) { gift.hidden = true; btnWatch.hidden = true; revealCard(); return; }
   gift.hidden = true; btnWatch.hidden = true; wrap.hidden = false; lastTime = 0;
   $('#reward-title').textContent = 'Watch the ad to unwrap your card';
   audio.duckMusic(true);
@@ -50,7 +53,7 @@ adClose.addEventListener('click', () => { if (ctx?.ready) revealCard(); });
 btnDone.addEventListener('click', () => {
   if (!ctx) return;
   const { planeIdx } = parseCardId(ctx.cardId);
-  if (ctx.completes) showScreen('assembly', { planeIdx }); else showScreen('claw');
+  if (ctx.completes) showScreen('assembly', { planeIdx, setNumber: ctx.setNumber }); else showScreen('claw');
 });
 
 function rewardReady() {
@@ -74,10 +77,10 @@ function revealCard() {
   video.pause();
   audio.duckMusic(false);
   const { planeIdx, part } = parseCardId(ctx.cardId);
-  $('#reward-title').textContent = ctx.completes ? `🎉 Set complete: ${PLANES[planeIdx].name}!` : 'Here is your card!';
+  $('#reward-title').textContent = ctx.completes ? (ctx.setNumber > 1 ? `🎉 ${PLANES[planeIdx].name} set ×${ctx.setNumber}!` : `🎉 Set complete: ${PLANES[planeIdx].name}!`) : 'Here is your card!';
   wrap.hidden = true;
   reveal.hidden = false;
-  reveal.replaceChildren(createCardElement({ planeIdx, part, owned: true, big: true }));
+  reveal.replaceChildren(createCardElement({ planeIdx, part, owned: true, big: true, count: ctx.copies }));
   btnDone.hidden = false;
   btnDone.textContent = ctx.completes ? 'Build my plane! 🛠️' : 'Awesome!';
   audio.play('flip'); setTimeout(() => audio.play('fanfare'), 500);
