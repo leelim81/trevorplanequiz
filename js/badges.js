@@ -1,5 +1,6 @@
 import { state, markDirty, save } from './store.js';
 import { showBadgeModal } from './ui.js';
+import { PLANES } from './planes.js';
 
 export const BADGES = [
   { id: 'takeoff', name: 'Takeoff', icon: '🛫', desc: 'Get your first answer right', test: (c) => c.correctTotal >= 1 },
@@ -13,7 +14,9 @@ export const BADGES = [
   { id: 'gearhead', name: 'Gearhead', icon: '🔧', desc: 'Know 30 different car brands', test: (c) => c.distinct.cars >= 30 },
   { id: 'collector', name: 'Collector', icon: '🃏', desc: 'Win your first trading card', test: (c) => c.ownedCards >= 1 },
   { id: 'mechanic', name: 'Mechanic', icon: '🛠️', desc: 'Complete your first plane', test: (c) => c.completedPlanes >= 1 },
-  { id: 'hangar', name: 'Full Hangar', icon: '🏆', desc: 'Complete all 10 planes', test: (c) => c.completedPlanes >= 10 },
+  { id: 'hangar10', name: 'Hangar Ten', icon: '🏭', desc: 'Complete 10 planes', test: (c) => c.completedPlanes >= 10 },
+  { id: 'fleet', name: 'Fleet Commander', icon: '🛫', desc: 'Complete 25 planes', test: (c) => c.completedPlanes >= 25 },
+  { id: 'hangar', name: 'Full Hangar', icon: '🏆', desc: `Complete all ${PLANES.length} planes`, test: (c) => c.completedPlanes >= PLANES.length },
   { id: 'luckyclaw', name: 'Lucky Claw', icon: '🍀', desc: 'Win the claw 3 times in a row', test: (c) => c.clawStreak >= 3 },
 ];
 export const badgeById = (id) => BADGES.find((b) => b.id === id);

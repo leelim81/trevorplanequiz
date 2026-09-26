@@ -60,12 +60,21 @@ export function renderCardImage(planeIdx, part, { silhouette = false } = {}) {
   return p;
 }
 
+// Cards only render once they scroll into view — a 63-plane collection is 252 of them.
+const lazyObserver = typeof IntersectionObserver === 'undefined' ? null : new IntersectionObserver((entries, obs) => {
+  for (const e of entries) {
+    if (!e.isIntersecting) continue;
+    obs.unobserve(e.target);
+    e.target._render?.();
+  }
+}, { rootMargin: '200px' });
+
 export function preloadCards(planeIdx, owned) {
   for (const part of [1, 2, 3, 4]) renderCardImage(planeIdx, part, { silhouette: !owned.includes(part) });
 }
 
 // Builds a .tcard element; the picture fills in when the render finishes.
-export function createCardElement({ planeIdx, part, owned = true, big = false, placeholder = false, count = 0 }) {
+export function createCardElement({ planeIdx, part, owned = true, big = false, placeholder = false, count = 0, lazy = false }) {
   const plane = PLANES[planeIdx];
   const card = el('div', { class: `tcard ${owned ? '' : 'locked'} ${big ? 'big' : ''}`, style: `--c1:${plane.colors[0]};--c2:${plane.colors[1]}` });
   const imgWrap = el('div', { class: 'tcard-img' });
@@ -77,8 +86,11 @@ export function createCardElement({ planeIdx, part, owned = true, big = false, p
     imgWrap.append(el('div', { text: '❓', style: 'font-size:2.2rem' }));
   } else {
     const img = el('img', { alt: `${plane.name} ${partName(part)}` });
-    imgWrap.append(img);
-    renderCardImage(planeIdx, part, { silhouette: !owned }).then((url) => { if (url) img.src = url; else img.replaceWith(el('div', { text: plane.emoji, style: 'font-size:2.2rem' })); });
+    const ph = el('span', { class: 'tcard-ph', text: plane.emoji });   // shown until the render lands
+    imgWrap.append(ph, img);
+    const draw = () => renderCardImage(planeIdx, part, { silhouette: !owned })
+      .then((url) => { if (url) { img.src = url; ph.remove(); } else { img.remove(); } });
+    if (lazy && lazyObserver) { card._render = draw; lazyObserver.observe(card); } else draw();
   }
   return card;
 }

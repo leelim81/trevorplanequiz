@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><base href="../"><title>All planes</title>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"}}</script>
+<style>body{font-family:system-ui;margin:0;background:#0f172a;color:#e2e8f0}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:4px;padding:4px}
+figure{margin:0;background:#1e293b;border-radius:6px;padding:2px;text-align:center}
+figure img{width:100%;aspect-ratio:1;background:#fff;border-radius:4px;display:block}
+figcaption{font-size:10px;padding:2px;line-height:1.2}
+.bad{outline:3px solid #ef4444}
+#head{padding:6px;font-size:13px;position:sticky;top:0;background:#0f172a;z-index:2}</style>
+</head><body>
+<div id="head">rendering… <span id="count"></span></div>
+<div id="grid"></div>
+<script type="module">
+// Renders every plane from the same side-on angle. The nose must point RIGHT in every picture.
+import { THREE, addLights, loadPlane, boxOf } from './js/three-common.js';
+import { PLANES_BY_SIZE } from './js/planes.js';
+const grid = document.getElementById('grid');
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1); renderer.setSize(300, 300, false); renderer.outputColorSpace = THREE.SRGBColorSpace;
+const scene = addLights(new THREE.Scene());
+const camera = new THREE.PerspectiveCamera(30, 1, 0.01, 100);
+camera.position.set(0.35, 0.55, 2.0); camera.lookAt(0, 0, 0);
+let done = 0;
+for (const plane of PLANES_BY_SIZE) {
+  const fig = document.createElement('figure');
+  const img = document.createElement('img');
+  const cap = document.createElement('figcaption');
+  cap.textContent = `${plane.idx} ${plane.name}`;
+  fig.append(img, cap); grid.append(fig);
+  try {
+    const obj = await loadPlane(plane);
+    const b = boxOf(obj), s = b.getSize(new THREE.Vector3());
+    scene.add(obj); renderer.render(scene, camera); img.src = renderer.domElement.toDataURL(); scene.remove(obj);
+    cap.textContent += ` · ${s.x.toFixed(2)}×${s.y.toFixed(2)}×${s.z.toFixed(2)}`;
+    if (s.z > s.x * 1.05) fig.classList.add('bad');   // wingspan should not exceed length by much
+  } catch (e) { cap.textContent += ' LOAD FAIL'; fig.classList.add('bad'); }
+  document.getElementById('count').textContent = `${++done}/${PLANES_BY_SIZE.length}`;
+}
+document.getElementById('head').textContent = `done ${done} planes — nose must point RIGHT in every picture`;
+</script></body></html>

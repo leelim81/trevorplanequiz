@@ -39,12 +39,37 @@ export function addLights(scene, intensity = 1) {
   return scene;
 }
 
-// Applies the manifest rotation, scales the model so its nose→tail length (X) is 1, centres it.
+// Turns a model so its nose points +X without hand-tuning: the longest horizontal axis becomes X,
+// then whichever half carries the tall tail fin is put at -X.
+function autoOrient(wrapper, scene) {
+  wrapper.updateMatrixWorld(true);
+  const size = new THREE.Box3().setFromObject(wrapper).getSize(new THREE.Vector3());
+  if (size.z > size.x) { scene.rotation.y = Math.PI / 2; wrapper.updateMatrixWorld(true); }
+  const box = new THREE.Box3().setFromObject(wrapper);
+  const cx = (box.min.x + box.max.x) / 2;
+  let frontTop = -Infinity, backTop = -Infinity;
+  const v = new THREE.Vector3();
+  wrapper.traverse((m) => {
+    if (!m.isMesh) return;
+    const pos = m.geometry.attributes.position;
+    if (!pos) return;
+    const step = Math.max(1, Math.floor(pos.count / 4000)); // sample, big meshes don't need every vertex
+    for (let i = 0; i < pos.count; i += step) {
+      v.fromBufferAttribute(pos, i).applyMatrix4(m.matrixWorld);
+      if (v.x > cx) frontTop = Math.max(frontTop, v.y); else backTop = Math.max(backTop, v.y);
+    }
+  });
+  if (frontTop > backTop) { scene.rotation.y += Math.PI; wrapper.updateMatrixWorld(true); }
+}
+
+// Applies the rotation (from the manifest, or worked out automatically when `rot` is null),
+// scales the model so its nose→tail length (X) is 1, and centres it.
 function normalise(scene, plane) {
   const wrapper = new THREE.Group();
   wrapper.name = `plane:${plane.id}`;
-  scene.rotation.set(...(plane.rot || [0, 0, 0]).map(THREE.MathUtils.degToRad));
   wrapper.add(scene);
+  if (plane.rot) scene.rotation.set(...plane.rot.map(THREE.MathUtils.degToRad));
+  else autoOrient(wrapper, scene);
   wrapper.updateMatrixWorld(true);
   const box = new THREE.Box3().setFromObject(wrapper);
   const size = box.getSize(new THREE.Vector3());

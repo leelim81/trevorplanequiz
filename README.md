@@ -12,10 +12,13 @@ Plain HTML + CSS + JavaScript (no build step), Firebase for Google sign-in and d
 - **Play**: pick Airlines, Cars, Flags or Mixed. You have 3 lives. Each question shows a picture and 4 answers.
   Answer inside the gold part of the timer bar (first second) for a bonus point. 3 points = 1 coin.
 - **Claw machine**: 1 coin per try, 50% chance to win a trading card. Watch the video to unwrap the card.
-- Each plane has 4 cards (nose, wings, fuselage, tail). Collect all 4 and watch the plane build itself in 3D.
+- There are **63 planes** to collect, from a Piper Tri-Pacer to the Antonov An-225. Each has 4 cards
+  (nose, wings, fuselage, tail). Collect all 4 and watch the plane build itself in 3D.
   The claw never drops a card you already own until you have all 40; after that it's the **bonus round** — extra
   copies drop (steered toward the plane with the fewest sets) and each plane shows how many complete sets you have (×N).
-- Accounts listed in `VIP_EMAILS` in `js/config.js` start with every card (100–200 sets per plane) and skip the reward video.
+- The claw machine shows ten planes at a time — whichever ones the next card could come from.
+- Accounts listed in `VIP_EMAILS` in `js/config.js` start with every card (100–200 sets per plane), skip the reward
+  video, and get a daily top-up set by `VIP_DAILY` (coins, a points floor, and more sets of every plane).
 - **Leaderboard** shows the best single runs. Tap a pilot to see their hangar and badges.
 
 ## One-time Firebase setup (about 10 minutes)
@@ -51,7 +54,10 @@ All the knobs are in [`js/config.js`](js/config.js): timer length, bonus window,
 ## Rebuilding the assets
 
 - `node tools/fetch-assets.mjs` downloads the logos and flags and writes `data/*.json`.
-- `./tools/prepare-models.sh` downloads the 3D models, converts the two glTF 1.0 files and shrinks everything into `assets/models/`.
+- `./tools/prepare-models.sh` downloads every model listed in `tools/models.json`, converts the glTF 1.0 ones
+  and shrinks them into `assets/models/`. Pass ids to redo just a few: `./tools/prepare-models.sh a380 b747`.
+- `tools/models.json` is the roster; `js/planes.js` is generated from it. `idx` values are never reordered because
+  saved cards refer to them.
 - `debug/models.html` shows each model with its four card slices (open it from the local server).
 
 Run locally with any static server, e.g. `python3 -m http.server 8765` then open http://localhost:8765/.

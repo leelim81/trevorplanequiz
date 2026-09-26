@@ -1,4 +1,5 @@
-import { registerScreen, showScreen, $, el } from './ui.js';
+import { registerScreen, showScreen, $, el, fmt } from './ui.js';
+import { PLANES } from './planes.js';
 import { state, fetchPublicProfile } from './store.js';
 import { BADGES } from './badges.js';
 import { renderCollectionGrid } from './collection.js';
@@ -14,8 +15,8 @@ registerScreen('profile', {
     if (!p) { $('#profile-title').textContent = 'Pilot not found'; return; }
     $('#profile-title').textContent = mine ? '🎖️ My badges' : `${p.username}'s hangar`;
     const stats = [
-      ['Best run', p.bestRun || 0], ['Total points', p.totalPoints || 0],
-      ['Correct', p.correctTotal || 0], ['Planes built', `${(p.completedPlanes || []).length}/10`],
+      ['Best run', fmt(p.bestRun || 0)], ['Total points', fmt(p.totalPoints || 0)],
+      ['Correct', fmt(p.correctTotal || 0)], ['Planes built', `${(p.completedPlanes || []).length}/${PLANES.length}`],
     ];
     $('#profile-stats').replaceChildren(...stats.map(([k, v]) => el('div', { class: 'stat-box' }, [el('b', { text: v }), el('span', { text: k })])));
     const owned = new Set(p.badges || []);

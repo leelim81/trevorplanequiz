@@ -7,6 +7,8 @@ import { createCardElement } from './cardRender.js';
 import { PLANES } from './planes.js';
 import * as audio from './audio.js';
 
+const article = (name) => (/^[AEIOU]/i.test(name) ? 'an' : 'a');
+
 const video = $('#reward-video'), wrap = $('#video-wrap'), fill = $('#video-progress-fill');
 const btnWatch = $('#btn-watch'), btnDone = $('#btn-reward-done'), reveal = $('#card-reveal'), gift = $('#reward-gift');
 const adTimer = $('#ad-timer'), adClose = $('#ad-close'), adCta = $('#ad-cta');
@@ -17,7 +19,8 @@ registerScreen('reward', { enter, leave });
 function enter({ cardId, completes = false, setNumber = 1, copies = 1 } = {}) {
   ctx = { cardId, completes, setNumber, copies, revealed: false, ready: false };
   const { planeIdx } = parseCardId(cardId);
-  $('#reward-title').textContent = copies > 1 ? `Another ${PLANES[planeIdx].name} card!` : `You won a ${PLANES[planeIdx].name} card!`;
+  const pname = PLANES[planeIdx].name;
+  $('#reward-title').textContent = copies > 1 ? `Another ${pname} card!` : `You won ${article(pname)} ${pname} card!`;
   btnWatch.textContent = state.noAds ? '🎁 Unwrap it!' : '▶ Watch to unwrap it';
   gift.hidden = false; btnWatch.hidden = false; wrap.hidden = true; reveal.hidden = true; btnDone.hidden = true;
   reveal.replaceChildren(); fill.style.width = '0';

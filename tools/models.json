@@ -1,0 +1,1229 @@
+[
+ {
+  "id": "bumblebee",
+  "src": null,
+  "idx": 0,
+  "name": "Bumble Bee",
+  "code": "BB",
+  "emoji": "\ud83d\udc1d",
+  "size": 7.7,
+  "colors": [
+   "#fbbf24",
+   "#b45309"
+  ],
+  "desc": "The tiniest plane in the hangar!",
+  "credit": "Airco DH2 v2 by Joshua Johanson",
+  "url": "https://poly.pizza/m/9iVI9GHMleJ",
+  "license": "CC-BY 3.0",
+  "rot": [
+   0,
+   180,
+   0
+  ]
+ },
+ {
+  "id": "pipercub",
+  "src": null,
+  "idx": 1,
+  "name": "Piper Cub",
+  "code": "CUB",
+  "emoji": "\ud83d\udee9\ufe0f",
+  "size": 6.8,
+  "colors": [
+   "#fbbf24",
+   "#b45309"
+  ],
+  "desc": "A little yellow plane everyone learns to fly in.",
+  "credit": "PA-18 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "rot": [
+   0,
+   -90,
+   0
+  ]
+ },
+ {
+  "id": "cessna172",
+  "src": null,
+  "idx": 2,
+  "name": "Cessna 172",
+  "code": "C172",
+  "emoji": "\ud83d\udee9\ufe0f",
+  "size": 8.8,
+  "colors": [
+   "#fbbf24",
+   "#b45309"
+  ],
+  "desc": "The most-built plane ever.",
+  "credit": "C182 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "rot": [
+   0,
+   -90,
+   0
+  ]
+ },
+ {
+  "id": "p40",
+  "src": null,
+  "idx": 3,
+  "name": "P-40 Warhawk",
+  "code": "P40",
+  "emoji": "\ud83e\udd88",
+  "size": 10.2,
+  "colors": [
+   "#84cc16",
+   "#3f6212"
+  ],
+  "desc": "A WWII fighter with a shark mouth.",
+  "credit": "P-40 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "rot": [
+   0,
+   -90,
+   0
+  ]
+ },
+ {
+  "id": "learjet",
+  "src": null,
+  "idx": 4,
+  "name": "Learjet 45",
+  "code": "LJ45",
+  "emoji": "\ud83d\udcbc",
+  "size": 14.4,
+  "colors": [
+   "#e2e8f0",
+   "#475569"
+  ],
+  "desc": "A speedy private jet.",
+  "credit": "Citation II from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "rot": [
+   0,
+   -90,
+   0
+  ]
+ },
+ {
+  "id": "b737",
+  "src": null,
+  "idx": 5,
+  "name": "Boeing 737-700",
+  "code": "B737",
+  "emoji": "\u2708\ufe0f",
+  "size": 33.6,
+  "colors": [
+   "#38bdf8",
+   "#0369a1"
+  ],
+  "desc": "The world's most popular airliner.",
+  "credit": "B737 from Flightradar24 3D models",
+  "url": "https://github.com/Flightradar24/fr24-3d-models",
+  "license": "GPLv2",
+  "rot": [
+   0,
+   -90,
+   0
+  ]
+ },
+ {
+  "id": "b787",
+  "src": null,
+  "idx": 6,
+  "name": "Boeing 787 Dreamliner",
+  "code": "B787",
+  "emoji": "\u2708\ufe0f",
+  "size": 56.7,
+  "colors": [
+   "#a78bfa",
+   "#5b21b6"
+  ],
+  "desc": "Bendy wings and big windows.",
+  "credit": "B788 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "rot": [
+   0,
+   -90,
+   0
+  ]
+ },
+ {
+  "id": "b747",
+  "src": null,
+  "idx": 7,
+  "name": "Boeing 747-400",
+  "code": "B744",
+  "emoji": "\ud83d\udc18",
+  "size": 70.7,
+  "colors": [
+   "#f472b6",
+   "#9d174d"
+  ],
+  "desc": "The Queen of the Skies, with a hump!",
+  "credit": "B747 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "rot": [
+   0,
+   -90,
+   0
+  ]
+ },
+ {
+  "id": "a380",
+  "src": null,
+  "idx": 8,
+  "name": "Airbus A380",
+  "code": "A380",
+  "emoji": "\ud83c\udfe2",
+  "size": 72.7,
+  "colors": [
+   "#f472b6",
+   "#9d174d"
+  ],
+  "desc": "A double-decker for 500 people.",
+  "credit": "A380 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "rot": [
+   0,
+   -90,
+   0
+  ]
+ },
+ {
+  "id": "an225",
+  "src": null,
+  "idx": 9,
+  "name": "Antonov An-225 Mriya",
+  "code": "AN225",
+  "emoji": "\ud83d\udc09",
+  "size": 84.0,
+  "colors": [
+   "#fb923c",
+   "#9a3412"
+  ],
+  "desc": "The biggest plane ever built. Six engines!",
+  "credit": "An-225 from Flightradar24 3D models",
+  "url": "https://github.com/Flightradar24/fr24-3d-models",
+  "license": "GPLv2",
+  "rot": [
+   0,
+   -90,
+   0
+  ]
+ },
+ {
+  "id": "paraglider",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/paraglider/glTF2/paraglider.glb",
+  "legacy": false,
+  "credit": "paraglider from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 10,
+  "name": "Paraglider",
+  "code": "PARA",
+  "emoji": "\ud83e\ude82",
+  "size": 7.0,
+  "colors": [
+   "#bae6fd",
+   "#0369a1"
+  ],
+  "desc": "A wing, a seat and the wind.",
+  "rot": null
+ },
+ {
+  "id": "pa22",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/pa22/glTF2/PA22.glb",
+  "legacy": false,
+  "credit": "PA22 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 11,
+  "name": "Piper Tri-Pacer",
+  "code": "PA22",
+  "emoji": "\ud83d\udee9\ufe0f",
+  "size": 6.1,
+  "colors": [
+   "#fbbf24",
+   "#b45309"
+  ],
+  "desc": "A chubby little four-seater.",
+  "rot": null
+ },
+ {
+  "id": "dr40",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/dr40/glTF2/DR40.glb",
+  "legacy": false,
+  "credit": "DR40 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 12,
+  "name": "Robin DR400",
+  "code": "DR40",
+  "emoji": "\ud83d\udee9\ufe0f",
+  "size": 6.9,
+  "colors": [
+   "#fbbf24",
+   "#b45309"
+  ],
+  "desc": "A French plane with folded-up wingtips.",
+  "rot": null
+ },
+ {
+  "id": "pa28",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/pa28/glTF2/PA28.glb",
+  "legacy": false,
+  "credit": "PA28 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 13,
+  "name": "Piper Cherokee",
+  "code": "PA28",
+  "emoji": "\ud83d\udee9\ufe0f",
+  "size": 7.3,
+  "colors": [
+   "#fbbf24",
+   "#b45309"
+  ],
+  "desc": "A trainer with a low wing.",
+  "rot": null
+ },
+ {
+  "id": "sr22",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/sr22/glTF2/SR22.glb",
+  "legacy": false,
+  "credit": "SR22 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 14,
+  "name": "Cirrus SR22",
+  "code": "SR22",
+  "emoji": "\ud83e\ude82",
+  "size": 7.9,
+  "colors": [
+   "#fbbf24",
+   "#b45309"
+  ],
+  "desc": "Carries its own parachute!",
+  "rot": null
+ },
+ {
+  "id": "pa32",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/pa32/glTF2/PA32.glb",
+  "legacy": false,
+  "credit": "PA32 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 15,
+  "name": "Piper Saratoga",
+  "code": "PA32",
+  "emoji": "\ud83d\udee9\ufe0f",
+  "size": 8.4,
+  "colors": [
+   "#fbbf24",
+   "#b45309"
+  ],
+  "desc": "Six seats and a big nose.",
+  "rot": null
+ },
+ {
+  "id": "ask21",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/ask21/glTF2/AS21.glb",
+  "legacy": false,
+  "credit": "AS21 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 16,
+  "name": "ASK 21 Glider",
+  "code": "AS21",
+  "emoji": "\ud83e\udd85",
+  "size": 8.4,
+  "colors": [
+   "#bae6fd",
+   "#0369a1"
+  ],
+  "desc": "No engine \u2014 it soars like a bird.",
+  "rot": null
+ },
+ {
+  "id": "c421",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/c421/glTF2/C421.glb",
+  "legacy": false,
+  "credit": "C421 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 17,
+  "name": "Cessna 421",
+  "code": "C421",
+  "emoji": "\ud83d\udee9\ufe0f",
+  "size": 11.1,
+  "colors": [
+   "#fbbf24",
+   "#b45309"
+  ],
+  "desc": "Two propellers, one small plane.",
+  "rot": null
+ },
+ {
+  "id": "pc21",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/pc21/glTF2/PC21.glb",
+  "legacy": false,
+  "credit": "PC21 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 18,
+  "name": "Pilatus PC-21",
+  "code": "PC21",
+  "emoji": "\ud83c\udfaf",
+  "size": 11.2,
+  "colors": [
+   "#84cc16",
+   "#3f6212"
+  ],
+  "desc": "A turboprop that trains fighter pilots.",
+  "rot": null
+ },
+ {
+  "id": "c208",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/c208/glTF2/C208.glb",
+  "legacy": false,
+  "credit": "C208 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 19,
+  "name": "Cessna Caravan",
+  "code": "C208",
+  "emoji": "\ud83d\udce6",
+  "size": 12.7,
+  "colors": [
+   "#fbbf24",
+   "#b45309"
+  ],
+  "desc": "The delivery van of the sky.",
+  "rot": null
+ },
+ {
+  "id": "pc12",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/pc12/glTF2/PC12.glb",
+  "legacy": false,
+  "credit": "PC12 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 20,
+  "name": "Pilatus PC-12",
+  "code": "PC12",
+  "emoji": "\ud83d\udee9\ufe0f",
+  "size": 14.4,
+  "colors": [
+   "#fbbf24",
+   "#b45309"
+  ],
+  "desc": "One big propeller, room for nine.",
+  "rot": null
+ },
+ {
+  "id": "gazelle",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/gazl/glTF2/GAZL.glb",
+  "legacy": false,
+  "credit": "GAZL from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 21,
+  "name": "A\u00e9rospatiale Gazelle",
+  "code": "GAZL",
+  "emoji": "\ud83d\ude81",
+  "size": 12.0,
+  "colors": [
+   "#f87171",
+   "#b91c1c"
+  ],
+  "desc": "A quick little helicopter.",
+  "rot": null
+ },
+ {
+  "id": "ec135",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/ec35/glTF2/EC35.glb",
+  "legacy": false,
+  "credit": "EC35 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 22,
+  "name": "Eurocopter EC135",
+  "code": "EC35",
+  "emoji": "\ud83d\ude81",
+  "size": 12.2,
+  "colors": [
+   "#f87171",
+   "#b91c1c"
+  ],
+  "desc": "The air ambulance helicopter.",
+  "rot": null
+ },
+ {
+  "id": "b407",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/b407/glTF2/B407.glb",
+  "legacy": false,
+  "credit": "B407 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 23,
+  "name": "Bell 407",
+  "code": "B407",
+  "emoji": "\ud83d\ude81",
+  "size": 12.9,
+  "colors": [
+   "#f87171",
+   "#b91c1c"
+  ],
+  "desc": "Four blades and a smooth ride.",
+  "rot": null
+ },
+ {
+  "id": "dhc4",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/dhc4/glTF2/DHC4.glb",
+  "legacy": false,
+  "credit": "DHC4 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 24,
+  "name": "DHC-4 Caribou",
+  "code": "DHC4",
+  "emoji": "\ud83d\udce6",
+  "size": 22.0,
+  "colors": [
+   "#fbbf24",
+   "#b45309"
+  ],
+  "desc": "Lands almost anywhere.",
+  "rot": null
+ },
+ {
+  "id": "atr42",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/atr42/glTF2/AT45.glb",
+  "legacy": false,
+  "credit": "AT45 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 25,
+  "name": "ATR 42",
+  "code": "AT45",
+  "emoji": "\ud83c\udf00",
+  "size": 22.7,
+  "colors": [
+   "#2dd4bf",
+   "#0f766e"
+  ],
+  "desc": "A short hop with propellers.",
+  "rot": null
+ },
+ {
+  "id": "crj200",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/crj2/glTF2/CRJ2.glb",
+  "legacy": false,
+  "credit": "CRJ2 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 26,
+  "name": "Bombardier CRJ-200",
+  "code": "CRJ2",
+  "emoji": "\ud83d\udeeb",
+  "size": 26.8,
+  "colors": [
+   "#2dd4bf",
+   "#0f766e"
+  ],
+  "desc": "A skinny little jet.",
+  "rot": null
+ },
+ {
+  "id": "atr72",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/atr72/glTF2/AT75.glb",
+  "legacy": false,
+  "credit": "AT75 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 27,
+  "name": "ATR 72",
+  "code": "AT75",
+  "emoji": "\ud83c\udf00",
+  "size": 27.2,
+  "colors": [
+   "#2dd4bf",
+   "#0f766e"
+  ],
+  "desc": "Big wings, loud propellers.",
+  "rot": null
+ },
+ {
+  "id": "bae146",
+  "src": "https://raw.githubusercontent.com/Flightradar24/fr24-3d-models/master/models/bae146.glb",
+  "legacy": true,
+  "credit": "bae146 from Flightradar24 3D models",
+  "url": "https://github.com/Flightradar24/fr24-3d-models",
+  "license": "GPLv2",
+  "idx": 28,
+  "name": "BAe 146",
+  "code": "B146",
+  "emoji": "\ud83e\udd2b",
+  "size": 28.6,
+  "colors": [
+   "#2dd4bf",
+   "#0f766e"
+  ],
+  "desc": "Four quiet engines \u2014 the Whisperjet.",
+  "rot": null
+ },
+ {
+  "id": "e145",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/e145/glTF2/E145.glb",
+  "legacy": false,
+  "credit": "E145 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 29,
+  "name": "Embraer ERJ-145",
+  "code": "E145",
+  "emoji": "\ud83d\udeeb",
+  "size": 29.9,
+  "colors": [
+   "#2dd4bf",
+   "#0f766e"
+  ],
+  "desc": "One seat each side of the aisle.",
+  "rot": null
+ },
+ {
+  "id": "e170",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/e190/glTF2/E170.glb",
+  "legacy": false,
+  "credit": "E170 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 30,
+  "name": "Embraer E170",
+  "code": "E170",
+  "emoji": "\ud83d\udeeb",
+  "size": 29.9,
+  "colors": [
+   "#2dd4bf",
+   "#0f766e"
+  ],
+  "desc": "A small jet with big windows.",
+  "rot": null
+ },
+ {
+  "id": "e175",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/e190/glTF2/E75L.glb",
+  "legacy": false,
+  "credit": "E75L from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 31,
+  "name": "Embraer E175",
+  "code": "E75L",
+  "emoji": "\ud83d\udeeb",
+  "size": 31.7,
+  "colors": [
+   "#2dd4bf",
+   "#0f766e"
+  ],
+  "desc": "The most popular regional jet.",
+  "rot": null
+ },
+ {
+  "id": "crj700",
+  "src": "https://raw.githubusercontent.com/Flightradar24/fr24-3d-models/master/models/crj700.glb",
+  "legacy": true,
+  "credit": "crj700 from Flightradar24 3D models",
+  "url": "https://github.com/Flightradar24/fr24-3d-models",
+  "license": "GPLv2",
+  "idx": 32,
+  "name": "Bombardier CRJ-700",
+  "code": "CRJ7",
+  "emoji": "\ud83d\udeeb",
+  "size": 32.3,
+  "colors": [
+   "#2dd4bf",
+   "#0f766e"
+  ],
+  "desc": "A stretched CRJ.",
+  "rot": null
+ },
+ {
+  "id": "q400",
+  "src": "https://raw.githubusercontent.com/Flightradar24/fr24-3d-models/master/models/q400.glb",
+  "legacy": true,
+  "credit": "q400 from Flightradar24 3D models",
+  "url": "https://github.com/Flightradar24/fr24-3d-models",
+  "license": "GPLv2",
+  "idx": 33,
+  "name": "Dash 8 Q400",
+  "code": "Q400",
+  "emoji": "\ud83c\udf00",
+  "size": 32.8,
+  "colors": [
+   "#2dd4bf",
+   "#0f766e"
+  ],
+  "desc": "The fastest turboprop airliner.",
+  "rot": null
+ },
+ {
+  "id": "e190",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/e190/glTF2/E190.glb",
+  "legacy": false,
+  "credit": "E190 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 34,
+  "name": "Embraer E190",
+  "code": "E190",
+  "emoji": "\ud83d\udeeb",
+  "size": 36.2,
+  "colors": [
+   "#2dd4bf",
+   "#0f766e"
+  ],
+  "desc": "A jet that thinks it's big.",
+  "rot": null
+ },
+ {
+  "id": "crj900",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/crj9/glTF2/CRJ9.glb",
+  "legacy": false,
+  "credit": "CRJ9 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 35,
+  "name": "Bombardier CRJ-900",
+  "code": "CRJ9",
+  "emoji": "\ud83d\udeeb",
+  "size": 36.2,
+  "colors": [
+   "#2dd4bf",
+   "#0f766e"
+  ],
+  "desc": "Long and low to the ground.",
+  "rot": null
+ },
+ {
+  "id": "t134",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/t134/glTF2/T134.glb",
+  "legacy": false,
+  "credit": "T134 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 36,
+  "name": "Tupolev Tu-134",
+  "code": "T134",
+  "emoji": "\u262d",
+  "size": 37.0,
+  "colors": [
+   "#2dd4bf",
+   "#0f766e"
+  ],
+  "desc": "A Soviet jet with a glass nose.",
+  "rot": null
+ },
+ {
+  "id": "a220_100",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/bcs1/glTF2/BCS1.glb",
+  "legacy": false,
+  "credit": "BCS1 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 37,
+  "name": "Airbus A220-100",
+  "code": "BCS1",
+  "emoji": "\u2728",
+  "size": 35.0,
+  "colors": [
+   "#38bdf8",
+   "#0369a1"
+  ],
+  "desc": "Brand new and very quiet.",
+  "rot": null
+ },
+ {
+  "id": "a220_300",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/bcs1/glTF2/BCS3.glb",
+  "legacy": false,
+  "credit": "BCS3 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 38,
+  "name": "Airbus A220-300",
+  "code": "BCS3",
+  "emoji": "\u2728",
+  "size": 38.7,
+  "colors": [
+   "#38bdf8",
+   "#0369a1"
+  ],
+  "desc": "The stretched A220.",
+  "rot": null
+ },
+ {
+  "id": "a318",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/a320/glTF2/A318.glb",
+  "legacy": false,
+  "credit": "A318 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 39,
+  "name": "Airbus A318",
+  "code": "A318",
+  "emoji": "\ud83d\udc23",
+  "size": 31.4,
+  "colors": [
+   "#38bdf8",
+   "#0369a1"
+  ],
+  "desc": "The baby of the A320 family.",
+  "rot": null
+ },
+ {
+  "id": "b736",
+  "src": "https://raw.githubusercontent.com/Flightradar24/fr24-3d-models/master/models/b736.glb",
+  "legacy": true,
+  "credit": "b736 from Flightradar24 3D models",
+  "url": "https://github.com/Flightradar24/fr24-3d-models",
+  "license": "GPLv2",
+  "idx": 40,
+  "name": "Boeing 737-600",
+  "code": "B736",
+  "emoji": "\u2708\ufe0f",
+  "size": 31.2,
+  "colors": [
+   "#38bdf8",
+   "#0369a1"
+  ],
+  "desc": "The shortest 737.",
+  "rot": null
+ },
+ {
+  "id": "a319",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/a320/glTF2/A319.glb",
+  "legacy": false,
+  "credit": "A319 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 41,
+  "name": "Airbus A319",
+  "code": "A319",
+  "emoji": "\u2708\ufe0f",
+  "size": 33.8,
+  "colors": [
+   "#38bdf8",
+   "#0369a1"
+  ],
+  "desc": "A shorter A320.",
+  "rot": null
+ },
+ {
+  "id": "a320",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/a320/glTF2/A320.glb",
+  "legacy": false,
+  "credit": "A320 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 42,
+  "name": "Airbus A320",
+  "code": "A320",
+  "emoji": "\u2708\ufe0f",
+  "size": 37.6,
+  "colors": [
+   "#38bdf8",
+   "#0369a1"
+  ],
+  "desc": "Airbus's best seller.",
+  "rot": null
+ },
+ {
+  "id": "b738",
+  "src": "https://raw.githubusercontent.com/Flightradar24/fr24-3d-models/master/models/b738.glb",
+  "legacy": true,
+  "credit": "b738 from Flightradar24 3D models",
+  "url": "https://github.com/Flightradar24/fr24-3d-models",
+  "license": "GPLv2",
+  "idx": 43,
+  "name": "Boeing 737-800",
+  "code": "B738",
+  "emoji": "\u2708\ufe0f",
+  "size": 39.5,
+  "colors": [
+   "#38bdf8",
+   "#0369a1"
+  ],
+  "desc": "You have probably flown on one.",
+  "rot": null
+ },
+ {
+  "id": "b739",
+  "src": "https://raw.githubusercontent.com/Flightradar24/fr24-3d-models/master/models/b739.glb",
+  "legacy": true,
+  "credit": "b739 from Flightradar24 3D models",
+  "url": "https://github.com/Flightradar24/fr24-3d-models",
+  "license": "GPLv2",
+  "idx": 44,
+  "name": "Boeing 737-900",
+  "code": "B739",
+  "emoji": "\u2708\ufe0f",
+  "size": 42.1,
+  "colors": [
+   "#38bdf8",
+   "#0369a1"
+  ],
+  "desc": "The long 737.",
+  "rot": null
+ },
+ {
+  "id": "a321",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/a320/glTF2/A321.glb",
+  "legacy": false,
+  "credit": "A321 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 45,
+  "name": "Airbus A321",
+  "code": "A321",
+  "emoji": "\u2708\ufe0f",
+  "size": 44.5,
+  "colors": [
+   "#38bdf8",
+   "#0369a1"
+  ],
+  "desc": "The stretched A320.",
+  "rot": null
+ },
+ {
+  "id": "b707",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/b707/glTF2/707.glb",
+  "legacy": false,
+  "credit": "707 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 46,
+  "name": "Boeing 707",
+  "code": "B707",
+  "emoji": "\ud83d\udd70\ufe0f",
+  "size": 46.6,
+  "colors": [
+   "#38bdf8",
+   "#0369a1"
+  ],
+  "desc": "The jet that started jet travel.",
+  "rot": null
+ },
+ {
+  "id": "b752",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/b752/glTF2/B752.glb",
+  "legacy": false,
+  "credit": "B752 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 47,
+  "name": "Boeing 757-200",
+  "code": "B752",
+  "emoji": "\ud83d\ude80",
+  "size": 47.3,
+  "colors": [
+   "#38bdf8",
+   "#0369a1"
+  ],
+  "desc": "Rocket-powered for its size.",
+  "rot": null
+ },
+ {
+  "id": "b753",
+  "src": "https://raw.githubusercontent.com/Flightradar24/fr24-3d-models/master/models/b753.glb",
+  "legacy": true,
+  "credit": "b753 from Flightradar24 3D models",
+  "url": "https://github.com/Flightradar24/fr24-3d-models",
+  "license": "GPLv2",
+  "idx": 48,
+  "name": "Boeing 757-300",
+  "code": "B753",
+  "emoji": "\ud83d\ude80",
+  "size": 54.4,
+  "colors": [
+   "#38bdf8",
+   "#0369a1"
+  ],
+  "desc": "A very long, very skinny jet.",
+  "rot": null
+ },
+ {
+  "id": "b767",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/b767/glTF2/B767.glb",
+  "legacy": false,
+  "credit": "B767 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 49,
+  "name": "Boeing 767-200",
+  "code": "B762",
+  "emoji": "\u2708\ufe0f",
+  "size": 48.5,
+  "colors": [
+   "#a78bfa",
+   "#5b21b6"
+  ],
+  "desc": "The first twin-aisle Boeing twin.",
+  "rot": null
+ },
+ {
+  "id": "b763",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/b767/glTF2/B763.glb",
+  "legacy": false,
+  "credit": "B763 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 50,
+  "name": "Boeing 767-300",
+  "code": "B763",
+  "emoji": "\u2708\ufe0f",
+  "size": 54.9,
+  "colors": [
+   "#a78bfa",
+   "#5b21b6"
+  ],
+  "desc": "A stretched 767.",
+  "rot": null
+ },
+ {
+  "id": "b764",
+  "src": "https://raw.githubusercontent.com/Flightradar24/fr24-3d-models/master/models/b764.glb",
+  "legacy": true,
+  "credit": "b764 from Flightradar24 3D models",
+  "url": "https://github.com/Flightradar24/fr24-3d-models",
+  "license": "GPLv2",
+  "idx": 51,
+  "name": "Boeing 767-400",
+  "code": "B764",
+  "emoji": "\u2708\ufe0f",
+  "size": 61.4,
+  "colors": [
+   "#a78bfa",
+   "#5b21b6"
+  ],
+  "desc": "The longest 767, with raked wingtips.",
+  "rot": null
+ },
+ {
+  "id": "beluga",
+  "src": "https://raw.githubusercontent.com/Flightradar24/fr24-3d-models/master/models/beluga.glb",
+  "legacy": true,
+  "credit": "beluga from Flightradar24 3D models",
+  "url": "https://github.com/Flightradar24/fr24-3d-models",
+  "license": "GPLv2",
+  "idx": 52,
+  "name": "Airbus Beluga",
+  "code": "BLGA",
+  "emoji": "\ud83d\udc0b",
+  "size": 56.2,
+  "colors": [
+   "#fb923c",
+   "#9a3412"
+  ],
+  "desc": "A whale that carries plane parts.",
+  "rot": null
+ },
+ {
+  "id": "a332",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/a332/glTF2/A332.glb",
+  "legacy": false,
+  "credit": "A332 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 53,
+  "name": "Airbus A330-200",
+  "code": "A332",
+  "emoji": "\u2708\ufe0f",
+  "size": 58.8,
+  "colors": [
+   "#a78bfa",
+   "#5b21b6"
+  ],
+  "desc": "Shorter, flies further.",
+  "rot": null
+ },
+ {
+  "id": "md11",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/md11/glTF2/MD11.glb",
+  "legacy": false,
+  "credit": "MD11 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 54,
+  "name": "McDonnell Douglas MD-11",
+  "code": "MD11",
+  "emoji": "\ud83d\udd3a",
+  "size": 61.6,
+  "colors": [
+   "#a78bfa",
+   "#5b21b6"
+  ],
+  "desc": "Three engines \u2014 one in the tail.",
+  "rot": null
+ },
+ {
+  "id": "a333",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/a333/glTF2/A333.glb",
+  "legacy": false,
+  "credit": "A333 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 55,
+  "name": "Airbus A330-300",
+  "code": "A333",
+  "emoji": "\u2708\ufe0f",
+  "size": 63.7,
+  "colors": [
+   "#a78bfa",
+   "#5b21b6"
+  ],
+  "desc": "The everyday long-haul Airbus.",
+  "rot": null
+ },
+ {
+  "id": "a343",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/a343/glTF2/A343.glb",
+  "legacy": false,
+  "credit": "A343 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 56,
+  "name": "Airbus A340-300",
+  "code": "A343",
+  "emoji": "4\ufe0f\u20e3",
+  "size": 63.7,
+  "colors": [
+   "#a78bfa",
+   "#5b21b6"
+  ],
+  "desc": "Four engines, no hurry.",
+  "rot": null
+ },
+ {
+  "id": "b772",
+  "src": "https://raw.githubusercontent.com/Flightradar24/fr24-3d-models/master/models/b772.glb",
+  "legacy": true,
+  "credit": "b772 from Flightradar24 3D models",
+  "url": "https://github.com/Flightradar24/fr24-3d-models",
+  "license": "GPLv2",
+  "idx": 57,
+  "name": "Boeing 777-200",
+  "code": "B772",
+  "emoji": "\ud83d\udcaa",
+  "size": 63.7,
+  "colors": [
+   "#a78bfa",
+   "#5b21b6"
+  ],
+  "desc": "Two of the biggest jet engines ever.",
+  "rot": null
+ },
+ {
+  "id": "b789",
+  "src": "https://raw.githubusercontent.com/Flightradar24/fr24-3d-models/master/models/b789.glb",
+  "legacy": true,
+  "credit": "b789 from Flightradar24 3D models",
+  "url": "https://github.com/Flightradar24/fr24-3d-models",
+  "license": "GPLv2",
+  "idx": 58,
+  "name": "Boeing 787-9",
+  "code": "B789",
+  "emoji": "\u2708\ufe0f",
+  "size": 62.8,
+  "colors": [
+   "#a78bfa",
+   "#5b21b6"
+  ],
+  "desc": "A longer Dreamliner.",
+  "rot": null
+ },
+ {
+  "id": "a350",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/a350/glTF2/A350.glb",
+  "legacy": false,
+  "credit": "A350 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 59,
+  "name": "Airbus A350",
+  "code": "A350",
+  "emoji": "\ud83d\udd76\ufe0f",
+  "size": 66.8,
+  "colors": [
+   "#a78bfa",
+   "#5b21b6"
+  ],
+  "desc": "Look at its curved black windscreen.",
+  "rot": null
+ },
+ {
+  "id": "b773",
+  "src": "https://raw.githubusercontent.com/Flightradar24/fr24-3d-models/master/models/b773.glb",
+  "legacy": true,
+  "credit": "b773 from Flightradar24 3D models",
+  "url": "https://github.com/Flightradar24/fr24-3d-models",
+  "license": "GPLv2",
+  "idx": 60,
+  "name": "Boeing 777-300",
+  "code": "B773",
+  "emoji": "\ud83d\udcaa",
+  "size": 73.9,
+  "colors": [
+   "#f472b6",
+   "#9d174d"
+  ],
+  "desc": "The longest twin-engine jet.",
+  "rot": null
+ },
+ {
+  "id": "a346",
+  "src": "https://raw.githubusercontent.com/Flightradar24/fr24-3d-models/master/models/a346.glb",
+  "legacy": true,
+  "credit": "a346 from Flightradar24 3D models",
+  "url": "https://github.com/Flightradar24/fr24-3d-models",
+  "license": "GPLv2",
+  "idx": 61,
+  "name": "Airbus A340-600",
+  "code": "A346",
+  "emoji": "\ud83d\udccf",
+  "size": 75.4,
+  "colors": [
+   "#f472b6",
+   "#9d174d"
+  ],
+  "desc": "Once the longest airliner in the world.",
+  "rot": null
+ },
+ {
+  "id": "b748",
+  "src": "https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master/b748/glTF2/B748.glb",
+  "legacy": false,
+  "credit": "B748 from FlightAirMap 3D models (FlightGear)",
+  "url": "https://github.com/Ysurac/FlightAirMap-3dmodels",
+  "license": "GPLv2",
+  "idx": 62,
+  "name": "Boeing 747-8",
+  "code": "B748",
+  "emoji": "\ud83d\udc18",
+  "size": 76.3,
+  "colors": [
+   "#f472b6",
+   "#9d174d"
+  ],
+  "desc": "The biggest, newest jumbo jet.",
+  "rot": null
+ }
+]

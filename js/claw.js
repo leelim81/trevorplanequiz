@@ -1,9 +1,9 @@
 // Claw machine: a glass cabinet full of toy planes. One coin per try, 50% win chance.
 import { GAME } from './config.js';
-import { registerScreen, showScreen, $, toast, sleep } from './ui.js';
+import { registerScreen, showScreen, $, toast, sleep, fmt } from './ui.js';
 import { state, coins, markDirty, save, refreshHud } from './store.js';
 import { PLANES } from './planes.js';
-import { pickDrop, addCard, allOwned } from './cards.js';
+import { pickDrop, addCard, allOwned, likelyPlanes } from './cards.js';
 import { evaluateBadges } from './badges.js';
 import * as audio from './audio.js';
 import { THREE, createRenderer, fitRenderer, disposeRenderer, addLights, loadPlane, animate, easeOutCubic, easeInOutCubic, easeOutBack } from './three-common.js';
@@ -18,7 +18,7 @@ btnDrop.addEventListener('click', () => drop());
 
 function setMsg(t) { msg.textContent = t; }
 function updateCoins() {
-  $('#claw-coins').textContent = `🪙 ${coins()}`;
+  $('#claw-coins').textContent = `🪙 ${fmt(coins())}`;
   btnDrop.disabled = !g || g.busy || coins() < 1;
   if (coins() < 1) setMsg('Play the quiz to earn coins — 3 points = 1 coin');
   else if (allOwned(state.profile)) setMsg('🏆 Bonus round! Win extra sets of your planes');
@@ -127,9 +127,11 @@ async function enter() {
   setMsg('Loading toys…');
   updateCoins();
 
-  // Toys
+  // Toys: ten planes the next drop could actually come from.
   const spots = toyPositions();
-  await Promise.all(PLANES.map(async (plane, i) => {
+  const shown = likelyPlanes(state.profile, spots.length);
+  g.shown = new Set(shown.map((p) => p.idx));
+  await Promise.all(shown.map(async (plane, i) => {
     try {
       const m = await loadPlane(plane);
       if (!g?.alive) return;
@@ -171,11 +173,11 @@ function leave() {
 async function drop() {
   if (!g || g.busy || coins() < 1) return;
   const p = state.profile;
-  const card = pickDrop(p);
+  const card = pickDrop(p, g.shown);
   if (!card) { updateCoins(); return; }
   g.busy = true; g.sweeping = false; btnDrop.disabled = true;
   p.coinsSpent++; p.clawTries = (p.clawTries || 0) + 1;
-  markDirty(); save(true); refreshHud(); $('#claw-coins').textContent = `🪙 ${coins()}`;
+  markDirty(); save(true); refreshHud(); $('#claw-coins').textContent = `🪙 ${fmt(coins())}`;
 
   const win = Math.random() < GAME.CLAW_WIN_CHANCE;
   const toy = g.toys.get(card.planeIdx);

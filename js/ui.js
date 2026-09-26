@@ -50,10 +50,21 @@ export function bump(node, cls = 'bump') {
   node.classList.remove(cls); void node.offsetWidth; node.classList.add(cls);
 }
 
+// 1234 -> "1.2K", 9999999999999 -> "10T". Keeps giant VIP totals from breaking the HUD.
+export function fmt(n) {
+  n = Number(n) || 0;
+  if (n < 1000) return String(n);
+  const units = [[1e12, 'T'], [1e9, 'B'], [1e6, 'M'], [1e3, 'K']];
+  for (const [size, suffix] of units) {
+    if (n >= size) { const v = n / size; return (v >= 100 ? Math.round(v) : v.toFixed(1).replace(/\.0$/, '')) + suffix; }
+  }
+  return String(n);
+}
+
 export function updateHud({ username, points, coins, lives }) {
   if (username !== undefined) $('#hud-name').textContent = username;
-  if (points !== undefined) { const n = $('#hud-points'); if (n.textContent !== String(points)) { n.textContent = points; bump($('#hud-points-wrap')); } }
-  if (coins !== undefined) { const n = $('#hud-coins'); if (n.textContent !== String(coins)) { n.textContent = coins; bump($('#hud-coins-wrap')); } $('#menu-coins').textContent = `🪙 ${coins}`; }
+  if (points !== undefined) { const n = $('#hud-points'), t = fmt(points); if (n.textContent !== t) { n.textContent = t; n.title = points; bump($('#hud-points-wrap')); } }
+  if (coins !== undefined) { const n = $('#hud-coins'), t = fmt(coins); if (n.textContent !== t) { n.textContent = t; n.title = coins; bump($('#hud-coins-wrap')); } $('#menu-coins').textContent = `🪙 ${t}`; }
   if (lives !== undefined) $('#hud-lives').textContent = '❤️'.repeat(Math.max(0, lives)) + '🖤'.repeat(Math.max(0, 3 - lives));
 }
 

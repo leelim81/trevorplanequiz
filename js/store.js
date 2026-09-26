@@ -1,8 +1,8 @@
 // In-memory game state + persistence (Firestore, or localStorage in guest mode).
-import { GAME, VIP_EMAILS } from './config.js';
-import { ensureCardCounts, grantEverything } from './cards.js';
+import { GAME, VIP_EMAILS, VIP_DAILY } from './config.js';
+import { ensureCardCounts, grantEverything, grantSets, allOwned } from './cards.js';
 import * as fb from './firebase.js';
-import { updateHud } from './ui.js';
+import { updateHud, toast, fmt } from './ui.js';
 
 export const state = { user: null, uid: null, profile: null, stats: null, guest: false, noAds: false };
 const GUEST_KEY = 'tpq-guest-v1';
@@ -11,7 +11,7 @@ let dirty = false;
 export function newProfile(username) {
   return {
     username, usernameLower: username.toLowerCase(), createdAt: Date.now(),
-    bestRun: 0, totalPoints: 0, coinsSpent: 0,
+    bestRun: 0, totalPoints: 0, coinsSpent: 0, bonusCoins: 0, lastDailyGrant: null,
     badges: [], ownedCards: [], cardCounts: {}, completedPlanes: [],
     clawWins: 0, clawTries: 0, correctTotal: 0, wrongTotal: 0, runs: 0,
   };
@@ -19,7 +19,9 @@ export function newProfile(username) {
 export const newStats = () => ({ q: {} });
 
 export function coins(p = state.profile) {
-  return p ? Math.max(0, Math.floor((p.totalPoints || 0) / GAME.POINTS_PER_COIN) - (p.coinsSpent || 0)) : 0;
+  if (!p) return 0;
+  const earned = Math.floor((p.totalPoints || 0) / GAME.POINTS_PER_COIN) + (p.bonusCoins || 0);
+  return Math.max(0, earned - (p.coinsSpent || 0));
 }
 
 export function refreshHud() {
@@ -55,7 +57,9 @@ export async function createProfile(username) {
   const name = username.trim();
   const profile = newProfile(name);
   if (state.guest) {
-    state.profile = profile; state.stats = newStats(); saveGuest(); refreshHud(); return profile;
+    state.profile = profile; state.stats = newStats();
+    if (new URLSearchParams(location.search).has('vip')) applyVip(VIP_EMAILS[0]);
+    saveGuest(); refreshHud(); return profile;
   }
   await fb.fs.runTransaction(fb.db, async (tx) => {
     const taken = await tx.get(nameRef(profile.usernameLower));
@@ -64,19 +68,37 @@ export async function createProfile(username) {
     tx.set(userRef(state.uid), { ...profile, createdAt: fb.fs.serverTimestamp() });
     tx.set(statsRef(state.uid), newStats());
   });
-  state.profile = profile; state.stats = newStats(); refreshHud();
+  state.profile = profile; state.stats = newStats();
+  applyVip(state.user?.email);
+  refreshHud();
   return profile;
 }
 
-// VIP players skip the reward video and start with every card (100–200 sets per plane, rolled once).
+const todayKey = () => new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD in local time
+
+// VIP players skip the reward video, start with every card (100–200 sets per plane, rolled once)
+// and get a top-up of coins, points and plane sets once every calendar day.
 export function applyVip(email) {
   const vip = VIP_EMAILS.includes((email || '').toLowerCase());
   state.noAds = vip;
   const p = state.profile;
-  if (!vip || !p || p.vipGranted) return;
-  grantEverything(p, () => 100 + Math.floor(Math.random() * 101));
-  p.vipGranted = true;
-  markDirty(); save(true);
+  if (!vip || !p) return;
+  let changed = false;
+  // Also re-runs when new planes are added to the game, so a VIP is never missing any.
+  if (!p.vipGranted || !allOwned(p)) {
+    grantEverything(p, () => 100 + Math.floor(Math.random() * 101));
+    p.vipGranted = true; changed = true;
+  }
+  const today = todayKey();
+  if (p.lastDailyGrant !== today) {
+    p.lastDailyGrant = today;
+    p.bonusCoins = (p.bonusCoins || 0) + VIP_DAILY.coins;
+    p.totalPoints = Math.max(p.totalPoints || 0, VIP_DAILY.points);
+    grantSets(p, VIP_DAILY.planeSets);
+    changed = true;
+    setTimeout(() => toast(`🎁 Daily bonus: ${fmt(VIP_DAILY.coins)} coins + ${VIP_DAILY.planeSets} of every plane!`, { ms: 4000 }), 900);
+  }
+  if (changed) { markDirty(); save(true); }
 }
 
 export function markDirty() { dirty = true; }
@@ -89,7 +111,7 @@ export async function save(force = false) {
   const p = state.profile;
   const pub = {
     username: p.username, usernameLower: p.usernameLower,
-    bestRun: p.bestRun, totalPoints: p.totalPoints, coinsSpent: p.coinsSpent,
+    bestRun: p.bestRun, totalPoints: p.totalPoints, coinsSpent: p.coinsSpent, bonusCoins: p.bonusCoins || 0, lastDailyGrant: p.lastDailyGrant || null,
     badges: p.badges, ownedCards: p.ownedCards, cardCounts: p.cardCounts || {}, completedPlanes: p.completedPlanes, vipGranted: !!p.vipGranted,
     clawWins: p.clawWins, clawTries: p.clawTries, correctTotal: p.correctTotal, wrongTotal: p.wrongTotal, runs: p.runs,
     updatedAt: fb.fs.serverTimestamp(),

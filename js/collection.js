@@ -1,6 +1,6 @@
 import { registerScreen, showScreen, $, el } from './ui.js';
 import { state } from './store.js';
-import { PLANES } from './planes.js';
+import { PLANES, PLANES_BY_SIZE } from './planes.js';
 import { ownedParts, planeCount, cardCount, cardId, ensureCardCounts } from './cards.js';
 import { createCardElement } from './cardRender.js';
 import { THREE, createRenderer, fitRenderer, disposeRenderer, addLights, loadPlane } from './three-common.js';
@@ -9,19 +9,21 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 export async function renderCollectionGrid(container, profile, { readOnly = false, from = 'collection' } = {}) {
   profile = ensureCardCounts({ ...profile, cardCounts: { ...(profile.cardCounts || {}) } });
   const ownedCards = profile.ownedCards || [];
-  container.replaceChildren(...PLANES.map((plane) => {
+  const built = PLANES.filter((p) => ownedParts(p.idx, ownedCards).length === 4).length;
+  const summary = el('div', { class: 'collection-summary', text: `${built} of ${PLANES.length} planes built · ${ownedCards.length}/${PLANES.length * 4} cards` });
+  container.replaceChildren(summary, ...PLANES_BY_SIZE.map((plane) => {
     const owned = ownedParts(plane.idx, ownedCards);
     const complete = owned.length === 4;
     const sets = complete ? planeCount(profile, plane.idx) : 0;
     const head = el('div', { class: 'plane-row-head' }, [
       el('span', { text: plane.emoji, style: 'font-size:1.6rem' }),
-      el('h3', { text: plane.name }),
+      el('h3', {}, [plane.name, el('small', { class: 'plane-size', text: `${plane.size} m` })]),
       complete ? el('span', { class: 'done', text: 'Complete!' }) : el('span', { class: 'count', text: `${owned.length}/4` }),
       sets > 1 ? el('span', { class: 'times', text: `×${sets}` }) : null,
     ]);
     if (complete) head.append(el('button', { class: 'btn btn-view3d', text: '🔍 View 3D', onclick: () => showScreen('viewer', { planeIdx: plane.idx, from }) }));
     const cards = el('div', { class: 'plane-cards' }, [1, 2, 3, 4].map((part) =>
-      createCardElement({ planeIdx: plane.idx, part, owned: owned.includes(part), placeholder: owned.length === 0, count: cardCount(profile, cardId(plane.idx, part)) })));
+      createCardElement({ planeIdx: plane.idx, part, owned: owned.includes(part), count: cardCount(profile, cardId(plane.idx, part)), lazy: true })));
     return el('div', { class: 'plane-row' }, [head, cards]);
   }));
 }

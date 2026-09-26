@@ -37,20 +37,22 @@ export function ownedParts(planeIdx, owned) {
 // Never a duplicate while there is something new to win; leans hard toward the smallest plane
 // that is already started so sets finish in order. Once everything is owned (bonus round), extra
 // copies drop, steered toward whichever plane has the fewest complete sets.
-export function pickDrop(profile) {
+export function pickDrop(profile, allowed = null) {
   const owned = profile.ownedCards || [];
   const set = new Set(owned);
-  const unowned = allCards().filter((c) => !set.has(c.id));
+  const only = (list) => (allowed && list.some((c) => allowed.has(c.planeIdx)) ? list.filter((c) => allowed.has(c.planeIdx)) : list);
+  const unowned = only(allCards().filter((c) => !set.has(c.id)));
   if (unowned.length) {
     const started = new Set();
     for (const p of PLANES) { const n = ownedParts(p.idx, owned).length; if (n > 0 && n < 4) started.add(p.idx); }
     const target = started.size ? Math.min(...started) : -1;
     return weightedPick(unowned, (c) => (c.planeIdx === target ? 20 : started.has(c.planeIdx) ? 4 : 1));
   }
-  const counts = PLANES.map((p) => planeCount(profile, p.idx));
-  const minCount = Math.min(...counts);
-  const target = counts.indexOf(minCount);
-  return weightedPick(allCards(), (c) => (c.planeIdx === target ? (cardCount(profile, c.id) <= minCount ? 20 : 4) : 1));
+  const pool = only(allCards());
+  const counts = new Map(pool.map((c) => [c.planeIdx, planeCount(profile, c.planeIdx)]));
+  const minCount = Math.min(...counts.values());
+  const target = [...counts.entries()].find(([, n]) => n === minCount)[0];
+  return weightedPick(pool, (c) => (c.planeIdx === target ? (cardCount(profile, c.id) <= minCount ? 20 : 4) : 1));
 }
 
 // Records a won card; returns true when it completed a (new or extra) full set of that plane.
@@ -63,6 +65,31 @@ export function addCard(profile, id) {
   const after = planeCount(profile, planeIdx);
   if (after > before && !profile.completedPlanes.includes(planeIdx)) profile.completedPlanes.push(planeIdx);
   return { completes: after > before, setNumber: after, copies: profile.cardCounts[id] };
+}
+
+// The planes worth showing in the claw machine: whatever the next drops are most likely to be,
+// topped up with random ones so the cabinet is always full.
+export function likelyPlanes(profile, n) {
+  const seen = new Map();
+  for (let i = 0; i < n * 8 && seen.size < n; i++) {
+    const c = pickDrop(profile);
+    if (c && !seen.has(c.planeIdx)) seen.set(c.planeIdx, PLANES[c.planeIdx]);
+  }
+  const rest = PLANES.filter((p) => !seen.has(p.idx)).sort(() => Math.random() - 0.5);
+  return [...seen.values(), ...rest].slice(0, n).sort((a, b) => a.size - b.size);
+}
+
+// Adds `n` more complete sets of every plane (used for the VIP daily top-up).
+export function grantSets(profile, n) {
+  ensureCardCounts(profile);
+  for (const plane of PLANES) {
+    for (let part = 1; part <= 4; part++) {
+      const id = cardId(plane.idx, part);
+      if (!profile.ownedCards.includes(id)) profile.ownedCards.push(id);
+      profile.cardCounts[id] = (profile.cardCounts[id] || 0) + n;
+    }
+    if (!profile.completedPlanes.includes(plane.idx)) profile.completedPlanes.push(plane.idx);
+  }
 }
 
 // Gives a profile every card, with `sets` complete sets of each plane (sets may be a function of the plane).

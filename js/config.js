@@ -12,6 +12,13 @@ export const firebaseConfig = {
 // Players who get every card up front and never see the reward video.
 export const VIP_EMAILS = ['leelim81@gmail.com'];
 
+// What a VIP account receives, topped up once every calendar day.
+export const VIP_DAILY = {
+  coins: 100000000000,      // 100 billion coins a day
+  points: 9999999999999,    // points are held at this floor
+  planeSets: 50,            // 50 more complete sets of every plane
+};
+
 // Game tuning. All timings in milliseconds.
 export const GAME = {
   TIMER_MS: 3000,        // time to answer a question

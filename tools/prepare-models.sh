@@ -1,43 +1,65 @@
 #!/usr/bin/env bash
-# Downloads the 10 plane models, converts the two glTF 1.0 files to 2.0, and
-# shrinks everything into assets/models/. Needs node/npx and network.
-set -euo pipefail
+# Downloads every plane model listed in tools/models.json, converts the glTF 1.0 ones to 2.0,
+# and shrinks them into assets/models/<id>.glb. Safe to re-run: finished files are skipped.
+# Usage: ./tools/prepare-models.sh [id ...]      (no args = all)
+set -uo pipefail
 cd "$(dirname "$0")/.."
 RAW=tools/raw-models
-mkdir -p "$RAW" assets/models
+export RAW
+mkdir -p "$RAW" assets/models tools/logs
 
-FAM=https://raw.githubusercontent.com/Ysurac/FlightAirMap-3dmodels/master
-FR24=https://raw.githubusercontent.com/Flightradar24/fr24-3d-models/master/models
+BIN=tools/node_modules/.bin
+if [ ! -x "$BIN/gltf-pipeline" ] || [ ! -x "$BIN/gltf-transform" ]; then
+  echo "installing model tools (one time)…"
+  npm install --silent --no-save --prefix tools gltf-pipeline @gltf-transform/cli >/dev/null 2>&1 || {
+    echo "npm install failed"; exit 1; }
+fi
 
-dl() { # dl <url> <dest>
-  if [ ! -s "$2" ]; then echo "download $2"; curl -sSL -A trevorplanequiz "$1" -o "$2"; fi
-}
+# "id url legacy" for every model that has a source (no field contains a space)
+node -e '
+const m = require("./tools/models.json");
+for (const e of m) if (e.src) console.log(e.id, e.src, e.legacy ? 1 : 0);
+' > "$RAW/manifest.txt"
 
-dl https://static.poly.pizza/46a1f499-8789-4eae-a067-471841407781.glb "$RAW/bumblebee.glb"
-dl "$FAM/pa18/glTF2/PA18.glb"  "$RAW/pipercub.glb"
-dl "$FAM/c182/glTF2/C182.glb"  "$RAW/cessna172.glb"
-dl "$FAM/p40/glTF2/P40.glb"    "$RAW/p40.glb"
-dl "$FAM/c550/glTF2/C550.glb"  "$RAW/learjet.glb"
-dl "$FR24/b737.glb"            "$RAW/b737-v1.glb"
-dl "$FAM/a320/glTF2/A320.glb"  "$RAW/a320.glb"
-dl "$FAM/b788/glTF2/B788.glb"  "$RAW/b787.glb"
-dl "$FAM/b744/glTF2/B747.glb"  "$RAW/b747.glb"
-dl "$FAM/a380/glTF2/A380.glb"  "$RAW/a380.glb"
-dl "$FR24/an225.gltf"          "$RAW/an225-v1.gltf"
+if [ $# -gt 0 ]; then
+  pat=$(printf '%s\n' "$@" | paste -sd'|' -)
+  grep -E "^($pat) " "$RAW/manifest.txt" > "$RAW/todo.txt"
+else
+  cp "$RAW/manifest.txt" "$RAW/todo.txt"
+fi
 
-# glTF 1.0 -> 2.0 (gltf-pipeline upgrades legacy materials to PBR)
-for m in b737 an225; do
-  src=$(ls "$RAW/$m-v1".*)
-  if [ ! -s "$RAW/$m.glb" ]; then echo "convert $src"; npx -y gltf-pipeline -i "$src" -o "$RAW/$m.glb" -b; fi
-done
-
-# Optimise: smaller textures (webp), simplified meshes, no draco/meshopt so no decoders are needed.
-for f in bumblebee pipercub cessna172 p40 learjet b737 b787 b747 a380 an225; do
-  in="$RAW/$f.glb"; out="assets/models/$f.glb"
-  [ -s "$in" ] || { echo "MISSING $in"; continue; }
-  echo "optimise $f"
-  if ! npx -y @gltf-transform/cli optimize "$in" "$out" --compress false --texture-compress webp --texture-size 512 --simplify-ratio 0.5 --simplify-error 0.001 >/dev/null 2>"$RAW/$f.log"; then
-    echo "  optimise failed for $f (see $RAW/$f.log); copying raw"; cp "$in" "$out"
+prepare_one() {
+  local id="$1" url="$2" legacy="$3"
+  local out="assets/models/$id.glb"
+  [ -s "$out" ] && { echo "skip    $id"; return 0; }
+  local ext=glb; case "$url" in *.gltf) ext=gltf;; esac
+  local src="$RAW/$id-src.$ext"
+  if [ ! -s "$src" ]; then
+    curl -sSfL -A trevorplanequiz "$url" -o "$src" || { echo "FAIL dl $id"; return 1; }
   fi
-done
-ls -la assets/models
+  # Some upstream files contain bare NaN in their JSON, which no glTF loader accepts.
+  local clean="$RAW/$id-clean.glb"
+  if [ "$ext" = "glb" ] && node tools/sanitize-glb.mjs "$src" "$clean" 2>>"tools/logs/$id.sanitize.log"; then
+    src="$clean"
+  fi
+  local work="$src"
+  if [ "$legacy" = "1" ]; then
+    work="$RAW/$id-v2.glb"
+    [ -s "$work" ] || tools/node_modules/.bin/gltf-pipeline -i "$src" -o "$work" -b >/dev/null 2>"tools/logs/$id.convert.log" || {
+      echo "FAIL conv $id"; return 1; }
+  fi
+  if tools/node_modules/.bin/gltf-transform optimize "$work" "$out" \
+       --compress false --texture-compress webp --texture-size 512 \
+       --simplify-ratio 0.5 --simplify-error 0.001 >/dev/null 2>"tools/logs/$id.opt.log"; then
+    echo "ok      $id ($(du -h "$out" | cut -f1))"
+  else
+    cp "$work" "$out" && echo "raw     $id (optimise failed, see tools/logs/$id.opt.log)"
+  fi
+}
+export -f prepare_one
+
+xargs -P 4 -n 3 bash -c 'prepare_one "$1" "$2" "$3"' _ < "$RAW/todo.txt"
+
+echo "--- assets/models:"
+ls assets/models | wc -l
+du -sh assets/models
